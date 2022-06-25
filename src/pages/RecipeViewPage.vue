@@ -54,12 +54,16 @@ export default {
       // response = this.$route.params.response;
 
       try {
+        let recipeId = this.$route.params.recipeId
+        let recipeIdString = recipeId.toString();
+        console.log(recipeId)
         response = await this.axios.get(
           // "https://test-for-3-2.herokuapp.com/recipes/info",
-          this.$root.store.server_domain + "/recipes/info",
-          {
-            params: { id: this.$route.params.recipeId }
-          }
+          this.$root.store.server_domain + "/recipes/" + recipeIdString, { withCredentials: true, credentials: "include" }
+
+          // {
+          //   params: { id: this.$route.params.recipeId }
+          // }
         );
 
         // console.log("response.status", response.status);
@@ -71,28 +75,28 @@ export default {
       }
 
       let {
-        analyzedInstructions,
+        // analyzedInstructions,
         instructions,
-        extendedIngredients,
-        aggregateLikes,
+        // extendedIngredients,
+        // aggregateLikes,
         readyInMinutes,
         image,
         title
-      } = response.data.recipe;
+      } = response.data;
 
-      let _instructions = analyzedInstructions
-        .map((fstep) => {
-          fstep.steps[0].step = fstep.name + fstep.steps[0].step;
-          return fstep.steps;
-        })
-        .reduce((a, b) => [...a, ...b], []);
+      // let _instructions = analyzedInstructions
+      //   .map((fstep) => {
+      //     fstep.steps[0].step = fstep.name + fstep.steps[0].step;
+      //     return fstep.steps;
+      //   })
+      //   .reduce((a, b) => [...a, ...b], []);
 
       let _recipe = {
         instructions,
-        _instructions,
-        analyzedInstructions,
-        extendedIngredients,
-        aggregateLikes,
+        // _instructions,
+        // analyzedInstructions,
+        // extendedIngredients,
+        // aggregateLikes,
         readyInMinutes,
         image,
         title
