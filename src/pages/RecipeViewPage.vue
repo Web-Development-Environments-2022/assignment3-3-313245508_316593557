@@ -76,13 +76,14 @@ export default {
 
       let {
         // analyzedInstructions,
-        instructions,
-        // extendedIngredients,
-        // aggregateLikes,
+        //instructions,
+        extendedIngredients,
+        aggregateLikes,
         readyInMinutes,
         image,
         title
       } = response.data;
+      console.log(aggregateLikes)
 
       // let _instructions = analyzedInstructions
       //   .map((fstep) => {
@@ -92,11 +93,11 @@ export default {
       //   .reduce((a, b) => [...a, ...b], []);
 
       let _recipe = {
-        instructions,
+        // instructions,
         // _instructions,
         // analyzedInstructions,
-        // extendedIngredients,
-        // aggregateLikes,
+        extendedIngredients,
+        aggregateLikes,
         readyInMinutes,
         image,
         title
