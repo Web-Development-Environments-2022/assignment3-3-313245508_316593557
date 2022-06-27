@@ -75,7 +75,7 @@ export default {
       }
 
       let {
-        // analyzedInstructions,
+        analyzedInstructions,
         //instructions,
         extendedIngredients,
         aggregateLikes,
@@ -85,16 +85,16 @@ export default {
       } = response.data;
       console.log(aggregateLikes)
 
-      // let _instructions = analyzedInstructions
-      //   .map((fstep) => {
-      //     fstep.steps[0].step = fstep.name + fstep.steps[0].step;
-      //     return fstep.steps;
-      //   })
-      //   .reduce((a, b) => [...a, ...b], []);
+      let _instructions = analyzedInstructions
+        .map((fstep) => {
+          fstep.steps[0].step = fstep.name + fstep.steps[0].step;
+          return fstep.steps;
+        })
+        .reduce((a, b) => [...a, ...b], []);
 
       let _recipe = {
         // instructions,
-        // _instructions,
+        _instructions,
         // analyzedInstructions,
         extendedIngredients,
         aggregateLikes,

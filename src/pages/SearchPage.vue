@@ -1,18 +1,33 @@
+import Multiselect from 'vue-multiselect'
+
+
 <template>
+
   <div>
     <b-form-input v-model="text" placeholder="Search Recipe"></b-form-input>
     <!-- <div class="mt-2">Value: {{ text }}</div> -->
     <div>
 
+      <div>
+  <label class="typo__label">Simple select / dropdown</label>
+  <multiselect v-model="value" :options="options" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Pick some" label="name" track-by="name" :preselect-first="true">
+    <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} options selected</span></template>
+  </multiselect>
+  <pre class="language-json"><code>{{ value  }}</code></pre>
+</div>
 
 
-    <b-form-select v-model="Cuisine" :options="Cuisine"></b-form-select>
+
+
+
+
+    <!-- <b-form-select v-model="Cuisine" :options="Cuisine"></b-form-select>
     <b-form-select v-model="number_of_results" :options="number_of_results"></b-form-select>
     <b-form-select v-model="diet_type" :options="diet_type"></b-form-select>
-    <b-form-select v-model="intolerances" :options="intolerances"></b-form-select>
+    <b-form-select v-model="intolerances" :options="intolerances"></b-form-select> -->
 
 
-  <b-dropdown id="Cuisine" text="Cuisine" class="m-md-2">
+  <!-- <b-dropdown id="Cuisine" text="Cuisine" class="m-md-2">
     <b-dropdown-item>African</b-dropdown-item>
     <b-dropdown-item>American</b-dropdown-item>
     <b-dropdown-item>British</b-dropdown-item>
@@ -75,7 +90,7 @@
     <b-dropdown-item>Sulfite</b-dropdown-item>
     <b-dropdown-item>Tree Nut</b-dropdown-item>
     <b-dropdown-item>Wheat</b-dropdown-item>
-  </b-dropdown>
+  </b-dropdown> -->
 
   <b-button variant="primary">Search</b-button>
 
@@ -85,41 +100,27 @@
   </div>
 </template>
 
-<script>
+
+
+
+<script src="https://unpkg.com/vue-multiselect@2.1.0">
+
+<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
+
   export default {
     data() {
-      return {
-
-        Cuisine: [
-          { value: null, text: 'Please select a Cuisine' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ],
-        number_of_results: [
-          { value: null, text: 'Please select an option' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ],
-        diet_type: [
-          { value: null, text: 'Please select an option' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ],
-        intolerances: [
-          { value: null, text: 'Please select an option' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ]
-
-      }
+    return {
+      value: [],
+      options: [
+        { name: 'Vue.js', language: 'JavaScript' },
+        { name: 'Adonis', language: 'JavaScript' },
+        { name: 'Rails', language: 'Ruby' },
+        { name: 'Sinatra', language: 'Ruby' },
+        { name: 'Laravel', language: 'PHP' },
+        { name: 'Phoenix', language: 'Elixir' }
+      ]
     }
   }
+}
+
 </script>
