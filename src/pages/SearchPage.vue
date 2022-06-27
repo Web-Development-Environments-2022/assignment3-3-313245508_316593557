@@ -1,126 +1,166 @@
-import Multiselect from 'vue-multiselect'
-
 
 <template>
-
   <div>
-    <b-form-input v-model="text" placeholder="Search Recipe"></b-form-input>
-    <!-- <div class="mt-2">Value: {{ text }}</div> -->
-    <div>
-
-      <div>
-  <label class="typo__label">Simple select / dropdown</label>
-  <multiselect v-model="value" :options="options" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Pick some" label="name" track-by="name" :preselect-first="true">
-    <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} options selected</span></template>
-  </multiselect>
-  <pre class="language-json"><code>{{ value  }}</code></pre>
-</div>
-
-
-
-
-
-
-    <!-- <b-form-select v-model="Cuisine" :options="Cuisine"></b-form-select>
-    <b-form-select v-model="number_of_results" :options="number_of_results"></b-form-select>
-    <b-form-select v-model="diet_type" :options="diet_type"></b-form-select>
-    <b-form-select v-model="intolerances" :options="intolerances"></b-form-select> -->
+    <p><b>Enter query:</b></p>
+    <b-form-input v-model="query" placeholder="Search recipe"></b-form-input>
+    <!-- <div class="mt-2">Value: {{ query }}</div> -->
+    
+    <br>
+    <p><b>Select number of results:</b></p>
+    <b-form-select v-model="num_of_result_display" :options="num_of_result"></b-form-select>
+    
+    <br>
+    <p><b>Select Cuisine: (Hold ctrl to select multiple options)</b></p>
+    <b-form-select v-model="cuisine_display" :options="cuisine" multiple :select-size="4"></b-form-select>
+    <br>
+    <div class="mt-3">Choosed cuisines: <strong>{{ cuisine_display }}</strong></div>
+    
+    <br>
+    <p><b>Select Diet type: (Hold ctrl to select multiple options)</b></p>
+    <b-form-select v-model="diet_display" :options="diet" multiple :select-size="4"></b-form-select>
+    <br>
+    <div class="mt-3">Choosed diet types: <strong>{{ diet_display }}</strong></div>
 
 
-  <!-- <b-dropdown id="Cuisine" text="Cuisine" class="m-md-2">
-    <b-dropdown-item>African</b-dropdown-item>
-    <b-dropdown-item>American</b-dropdown-item>
-    <b-dropdown-item>British</b-dropdown-item>
-    <b-dropdown-item>Cajun</b-dropdown-item>
-    <b-dropdown-item>Caribbean</b-dropdown-item>
-    <b-dropdown-item>Chinese</b-dropdown-item>
-    <b-dropdown-item>Eastern European</b-dropdown-item>
-    <b-dropdown-item>European</b-dropdown-item>
-    <b-dropdown-item>French</b-dropdown-item>
-    <b-dropdown-item>German</b-dropdown-item>
-    <b-dropdown-item>Greek</b-dropdown-item>
-    <b-dropdown-item>Indian</b-dropdown-item>
-    <b-dropdown-item>Irish</b-dropdown-item>
-    <b-dropdown-item>Italian</b-dropdown-item>
-    <b-dropdown-item>Japanese</b-dropdown-item>
-    <b-dropdown-item>Jewish</b-dropdown-item>
-    <b-dropdown-item>Korean</b-dropdown-item>
-    <b-dropdown-item>Latin American</b-dropdown-item>
-    <b-dropdown-item>Mediterranean</b-dropdown-item>
-    <b-dropdown-item>Mexican</b-dropdown-item>
-    <b-dropdown-item>Middle Eastern</b-dropdown-item>
-    <b-dropdown-item>Nordic</b-dropdown-item>
-    <b-dropdown-item>Southern</b-dropdown-item>
-    <b-dropdown-item>Spanish</b-dropdown-item>
-    <b-dropdown-item>Thai</b-dropdown-item>
-    <b-dropdown-item>Vietnamese</b-dropdown-item>
-  </b-dropdown>
+    <br>
+    <p><b>Select Intolerances: (Hold ctrl to select multiple options)</b></p>
+    <b-form-select v-model="intolerance_display" :options="intolerance" multiple :select-size="4"></b-form-select>
+    <br>
+    <div class="mt-3">Choosed intolerances: <strong>{{ intolerance_display }}</strong></div>
+    <br>
 
-  <b-dropdown id="number_of_results" text="Number of results" class="m-md-2">
-    <b-dropdown-item>5</b-dropdown-item>
-    <b-dropdown-item>10</b-dropdown-item>
-    <b-dropdown-item>15</b-dropdown-item>
-  </b-dropdown>
+    <br>
+    <b-button variant="outline-primary" @click='Search'> Search </b-button>
 
-<b-dropdown id="diet_type" text="Diet type" class="m-md-2">
-    <b-dropdown-item>Gluten Free</b-dropdown-item>
-    <b-dropdown-item>Ketogenic</b-dropdown-item>
-    <b-dropdown-item>Vegeterian </b-dropdown-item>
-    <b-dropdown-item>Lacto-Vegetarian</b-dropdown-item>
-    <b-dropdown-item>Ovo-Vegetarian</b-dropdown-item>
-    <b-dropdown-item>Vegan</b-dropdown-item>
-    <b-dropdown-item>Pescetarian</b-dropdown-item>
-    <b-dropdown-item>Paleo</b-dropdown-item>
-    <b-dropdown-item>Primal</b-dropdown-item>
-    <b-dropdown-item>Low FODMAP</b-dropdown-item>
-    <b-dropdown-item>Whole30</b-dropdown-item>
-  </b-dropdown>
-
-
-<b-dropdown id="intolerances" text="Intolerances" class="m-md-2">
-    <b-dropdown-item>Dairy</b-dropdown-item>
-    <b-dropdown-item>Egg</b-dropdown-item>
-    <b-dropdown-item>Gluten </b-dropdown-item>
-    <b-dropdown-item>Grain</b-dropdown-item>
-    <b-dropdown-item>Peanut</b-dropdown-item>
-    <b-dropdown-item>Seafood</b-dropdown-item>
-    <b-dropdown-item>Sesame</b-dropdown-item>
-    <b-dropdown-item>Shellfish</b-dropdown-item>
-    <b-dropdown-item>Soy</b-dropdown-item>
-    <b-dropdown-item>Sulfite</b-dropdown-item>
-    <b-dropdown-item>Tree Nut</b-dropdown-item>
-    <b-dropdown-item>Wheat</b-dropdown-item>
-  </b-dropdown> -->
-
-  <b-button variant="primary">Search</b-button>
-
-
-</div>
 
   </div>
 </template>
 
-
-
-
-<script src="https://unpkg.com/vue-multiselect@2.1.0">
-
-<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
-
+<script>
   export default {
     data() {
-    return {
-      value: [],
-      options: [
-        { name: 'Vue.js', language: 'JavaScript' },
-        { name: 'Adonis', language: 'JavaScript' },
-        { name: 'Rails', language: 'Ruby' },
-        { name: 'Sinatra', language: 'Ruby' },
-        { name: 'Laravel', language: 'PHP' },
-        { name: 'Phoenix', language: 'Elixir' }
-      ]
+      return {
+        query: '', 
+
+        num_of_result_display: [],
+        num_of_result: [
+          { value: '5', text: '5' },
+          { value: '10', text: '10' },
+          { value: '15', text: '15' }
+        ],
+
+        cuisine_display: [],
+        cuisine: [
+          { value: 'African', text: 'African' },
+          { value: 'American', text: 'American' },
+          { value: 'Cajun', text: 'Cajun' },
+          { value: 'Caribbean', text: 'Caribbean' },
+          { value: 'Chinese', text: 'Chinese' },
+          { value: 'Eastern European', text: 'Eastern European' },
+          { value: 'European', text: 'European' },
+          { value: 'French', text: 'French' },
+          { value: 'German', text: 'German' },
+          { value: 'Greek', text: 'Greek' },
+          { value: 'Indian', text: 'Indian' },
+          { value: 'Italian', text: 'Italian' },
+          { value: 'Japanese', text: 'Japanese' },
+          { value: 'Jewish', text: 'Jewish' },
+          { value: 'Korean', text: 'Korean' },
+          { value: 'Latin American', text: 'Latin American' },
+          { value: 'Mediterranean', text: 'Mediterranean' },
+          { value: 'Mexican', text: 'Mexican' },
+          { value: 'Middle Eastern', text: 'Middle Eastern' },
+          { value: 'Nordic', text: 'Nordic' },
+          { value: 'Southern', text: 'Southern' },
+          { value: 'Spanish', text: 'Spanish' },
+          { value: 'Thai', text: 'Thai' },
+          { value: 'Vietnamese', text: 'Vietnamese' }
+        ],
+
+        diet_display: [],
+        diet: [
+          { value: 'Gluten Free', text: 'Gluten Free' },
+          { value: 'Ketogenic', text: 'Ketogenic' },
+          { value: 'Vegeterian', text: 'Vegeterian' },
+          { value: 'Lacto-Vegetarian', text: 'Lacto-Vegetarian' },
+          { value: 'Ovo-Vegetarian', text: 'Ovo-Vegetarian' },
+          { value: 'Vegan', text: 'Vegan' },
+          { value: 'Pescetarian', text: 'Pescetarian' },
+          { value: 'Paleo', text: 'Paleo' },
+          { value: 'Primal', text: 'Primal' },
+          { value: 'Low FODMAP', text: 'Low FODMAP' },
+          { value: 'Whole30', text: 'Whole30' }
+          ],
+        
+        intolerance_display: [],
+        intolerance: [
+          { value: 'Dairy', text: 'Dairy' },
+          { value: 'Egg', text: 'Egg' },
+          { value: 'Gluten', text: 'Gluten' },
+          { value: 'Grain', text: 'Grain' },
+          { value: 'Peanut', text: 'Peanut' },
+          { value: 'Seafood', text: 'Seafood' },
+          { value: 'Sesame', text: 'Sesame' },
+          { value: 'Shellfish', text: 'Shellfish' },
+          { value: 'Soy', text: 'Soy' },
+          { value: 'Sulfite', text: 'Sulfite' },
+          { value: 'Tree Nut', text: 'Tree Nut' },
+          { value: 'Wheat', text: 'Wheat' }
+        ],
+
+
+        
+      }
+    },
+    methods:{
+      async Search(){
+        try{
+          console.log("beginininggg")
+          console.log(this.query)
+          console.log(this.num_of_result_display)
+          console.log(this.joinList(this.cuisine_display))
+          console.log(this.joinList(this.diet_display))
+          console.log(this.joinList(this.intolerance_display))
+          
+
+          let cuisine_param = await this.joinList(this.cuisine_display)
+          let diet_param = await this.joinList(this.diet_display)
+          let intolerance_param = await this.joinList(this.intolerance_display)
+
+          
+          let response = await this.axios.get(
+            this.$root.store.server_domain + "recipes/search",{
+              params: {
+              query : this.query,
+              number: this.num_of_result_display,
+              cuisine: cuisine_param, 
+              diet: diet_param,
+              intolerances: intolerance_param
+              }
+              
+            }
+          );
+          console.log("heyyyyy1111")
+          console.log(response)
+        } catch (err){
+          console.log("got errorrr")
+          console.log(err.response);
+          this.form.submitError = err.response.data.message;
+          }
+      },
+
+      // Helper function that receives an object of array and returns a string of the elements comma separated
+        async joinList(object)
+      {    
+        let result_str = '';
+        let list_of_object = JSON.parse(JSON.stringify(object))
+        for(let index in Object.values(list_of_object)){
+          result_str += list_of_object[index] + ","
+        }
+        result_str = result_str.slice(0, -1)
+        
+        return result_str
+      }
     }
   }
-}
-
 </script>
