@@ -32,12 +32,20 @@
     <br>
     <b-button variant="outline-primary" @click='Search'> Search </b-button>
 
-
+    <div id="result_div">
+    <RecipePreviewList id="searched_recipes" title="Searched Recipes" class="SearchRecipes center" />
+    </div>
   </div>
+
+  
 </template>
 
 <script>
+import RecipePreviewList from "../components/RecipePreviewList";
   export default {
+    components: {
+    RecipePreviewList
+  },
     data() {
       return {
         query: '', 
@@ -115,21 +123,11 @@
     methods:{
       async Search(){
         try{
-          console.log("beginininggg")
-          console.log(this.query)
-          console.log(this.num_of_result_display)
-          console.log(this.joinList(this.cuisine_display))
-          console.log(this.joinList(this.diet_display))
-          console.log(this.joinList(this.intolerance_display))
-          
-
-          let cuisine_param = await this.joinList(this.cuisine_display)
-          let diet_param = await this.joinList(this.diet_display)
-          let intolerance_param = await this.joinList(this.intolerance_display)
-
-          
+          let cuisine_param = this.joinList(this.cuisine_display)
+          let diet_param =  this.joinList(this.diet_display)
+          let intolerance_param =  this.joinList(this.intolerance_display)
           let response = await this.axios.get(
-            this.$root.store.server_domain + "recipes/search",{
+            this.$root.store.server_domain + "/recipes/search",{
               params: {
               query : this.query,
               number: this.num_of_result_display,
@@ -137,10 +135,10 @@
               diet: diet_param,
               intolerances: intolerance_param
               }
-              
             }
           );
-          console.log("heyyyyy1111")
+
+
           console.log(response)
         } catch (err){
           console.log("got errorrr")
@@ -150,7 +148,7 @@
       },
 
       // Helper function that receives an object of array and returns a string of the elements comma separated
-        async joinList(object)
+       joinList(object)
       {    
         let result_str = '';
         let list_of_object = JSON.parse(JSON.stringify(object))

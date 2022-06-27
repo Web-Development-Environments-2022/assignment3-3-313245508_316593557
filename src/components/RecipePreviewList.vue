@@ -31,7 +31,19 @@ export default {
     };
   },
   mounted() {
-    this.updateRecipes();
+    if(this.title == "Random Recipes")
+    {
+      this.updateRecipes();
+    }
+    else if (this.title == "Last Viewed Recipes")
+    {
+      // console.log("hahahaha1")
+      // this.lastWatchedRecipes();
+      this.getLastWached();
+
+
+    }
+    
   },
   methods: {
     async updateRecipes() {
@@ -46,6 +58,32 @@ export default {
         this.recipes = [];
         this.recipes.push(...recipes);
         // console.log(this.recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async getLastWached() {
+      try {
+        console.log("entered last watched")
+        const response = await this.axios.get(
+          this.$root.store.server_domain + "/home/lastwatched",
+          // "https://test-for-3-2.herokuapp.com/recipes/random"
+        );
+
+        // console.log(response);
+        const recipes = response.data;
+        this.recipes = [];
+        this.recipes.push(...recipes);
+        // console.log(this.recipes);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async showSearchedRecipes() {
+      try{
+
       } catch (error) {
         console.log(error);
       }
