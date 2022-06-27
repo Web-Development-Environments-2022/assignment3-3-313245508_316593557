@@ -49,7 +49,7 @@ export default {
     async updateRecipes() {
       try {
         const response = await this.axios.get(
-          this.$root.store.server_domain + "/home/",
+          this.$root.store.server_domain + "/home/", 
           // "https://test-for-3-2.herokuapp.com/recipes/random"
         );
 
@@ -67,7 +67,7 @@ export default {
       try {
         console.log("entered last watched")
         const response = await this.axios.get(
-          this.$root.store.server_domain + "/home/lastwatched",
+          this.$root.store.server_domain + "/users/lastwatched",{withCredentials: true}
           // "https://test-for-3-2.herokuapp.com/recipes/random"
         );
 

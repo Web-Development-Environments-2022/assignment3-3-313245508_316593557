@@ -31,23 +31,36 @@
 
     <br>
     <b-button variant="outline-primary" @click='Search'> Search </b-button>
+  
 
-    <div id="result_div">
-    <RecipePreviewList id="searched_recipes" title="Searched Recipes" class="SearchRecipes center" />
-    </div>
+  <b-container v-if="isEmpty()">
+      <h3>
+        Search Results:
+      </h3>
+
+      <div class="searched_recipes">
+        <div class="searched_results" v-for="r in recipes" :key="r.id">
+            <RecipePreview class="recipePreview" :recipe="r" />
+        </div>
+      </div>
+  </b-container>
   </div>
 
   
 </template>
 
 <script>
-import RecipePreviewList from "../components/RecipePreviewList";
+// import RecipePreviewList from "../components/RecipePreviewList";
+import RecipePreview from "../components/RecipePreview";
+
   export default {
+    name: "searchResult",
     components: {
-    RecipePreviewList
-  },
+      RecipePreview
+    },
     data() {
       return {
+        recipes: [],
         query: '', 
 
         num_of_result_display: [],
@@ -121,6 +134,19 @@ import RecipePreviewList from "../components/RecipePreviewList";
       }
     },
     methods:{
+      isEmpty(){
+        if(this.recipes.length > 0)
+        {
+         
+          return true
+        }
+        else
+        {
+         
+
+        }
+    },
+
       async Search(){
         try{
           let cuisine_param = this.joinList(this.cuisine_display)
@@ -138,12 +164,14 @@ import RecipePreviewList from "../components/RecipePreviewList";
             }
           );
 
+          const searchResults = response.data;
+          this.recipes = [];
+          this.recipes.push(...searchResults);
 
-          console.log(response)
         } catch (err){
           console.log("got errorrr")
           console.log(err.response);
-          this.form.submitError = err.response.data.message;
+          // this.form.submitError = err.response.data.message;
           }
       },
 

@@ -3,15 +3,22 @@
     <div id="nav">
       <router-link :to="{ name: 'main' }">Main page</router-link>|
       <router-link :to="{ name: 'search' }">Search</router-link>|
-      {{ !$root.store.username }}
+      <!-- {{ !$root.store.username }} -->
       <span v-if="!$root.store.username">
-        Guest:
+        <!-- Guest: -->
         <router-link :to="{ name: 'register' }">Register</router-link>|
         <router-link :to="{ name: 'login' }">Login</router-link>|
+        
       </span>
       <span v-else>
-        {{ $root.store.username }}: <button @click="Logout">Logout</button>|
+        {{ $root.store.username }}: <button @click="Logout">Logout</button>|  
+        <router-link :to="{ name: 'favorites' }">Favorite</router-link>|
+        <router-link :to="{ name: 'private' }">Private</router-link>|
+        <router-link :to="{ name: 'family' }">Family</router-link>|
       </span>
+
+      
+
     </div>
     <router-view />
   </div>
