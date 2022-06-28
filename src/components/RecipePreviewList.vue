@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <h3>
-      {{ title }}
+      <!-- {{ title }} -->
       <slot></slot>
     </h3>
     <br>
@@ -22,7 +22,7 @@ export default {
     RecipePreview
   },
   props: {
-    title: {
+    id: {
       type: String,
       required: true
     },
@@ -37,19 +37,27 @@ export default {
     };
   },
   mounted() {
-    if(this.title == "Random Recipes")
+    if(this.id == "randomRecipeID")
     {
       this.updateRecipes();
     }
-    else if (this.title == "Last Viewed Recipes")
+    else if (this.id == "lastWatchedRecipeID")
     {
       // console.log("hahahaha1")
       // this.lastWatchedRecipes();
       this.getLastWached();
     }
-    else if (this.title == "Private Recipes")
+    else if (this.id == "privateRecipeID")
     {
       this.showPrivateRecipes()
+    }
+    else if (this.id == "favoriteRecipeID")
+    {
+      this.showFavoriteRecipes()
+    }
+    else if (this.id == "familyRecipeID")
+    {
+      this.showFamilyRecipes()
     }
     
   },
@@ -103,8 +111,33 @@ export default {
           }
           else
           {
-            console.log("response")
+            console.log("response private")
             console.log(response)
+            this.isEmpty = false;
+            this.recipes = response
+            this.$emit('isEmpty', this.isEmpty)
+          }
+        } catch (err)
+        {
+          console.log(err.response);
+        }
+      },
+
+      async showFavoriteRecipes()
+      {
+        try{
+          let response = await this.axios.get(
+            this.$root.store.server_domain + "/users/favorites",
+          );
+
+          response = JSON.parse(JSON.stringify(response.data))
+          if(response.length == 0) // there are no favorite recipes for the specific user
+          {
+            // return;
+          }
+          else
+          {
+            
             this.isEmpty = false;
             this.recipes = response
             this.$emit('isEmpty', this.isEmpty)
@@ -114,6 +147,40 @@ export default {
         } catch (err)
         {
           console.log("got err")
+          console.log(err.response);
+        }
+      },
+
+        async showFamilyRecipes()
+      {
+        try{
+          let response = await this.axios.get(
+            this.$root.store.server_domain + "/users/family",{
+           
+            }
+          );
+          console.log(response)
+          if(response.data.length == 0) // there are no family recipes for the specific user
+          {
+            // return;
+          }
+          else
+          {
+            console.log("response family")
+            
+            const searchResults = response.data;
+            console.log(searchResults)
+            this.recipes = [];
+            this.recipes.push(...searchResults);
+            console.log(this.recipes)
+            this.isEmpty = false;
+            this.$emit('isEmpty', this.isEmpty)
+          }
+          
+
+        } catch (err)
+        {
+          console.log("got err family")
           console.log(err.response);
         }
       },

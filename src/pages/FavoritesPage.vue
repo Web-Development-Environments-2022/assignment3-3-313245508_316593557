@@ -17,12 +17,14 @@
 
 <br><br><br>
 
-
-      <div class="favorite_recipes">
+      <div class="favorites_recipes" v-if="isEmptyFavorites()">
+        <RecipePreviewList @isEmpty="getisEmpty" id="favoriteRecipeID" class="FavoritesRecipes center" />
+      </div>
+      <!-- <div class="favorite_recipes">
         <div class="favorite_recipes" v-for="r in recipes" :key="r.id">
             <RecipePreview class="recipePreview" :recipe="r" />
         </div>
-      </div>
+      </div> -->
 
         <b-container v-if="isEmptyFavorites()">
       <h3 class = "title">
@@ -36,12 +38,14 @@
 </template>
 
 <script>
-import RecipePreview from "../components/RecipePreview";
+// import RecipePreview from "../components/RecipePreview";
+import RecipePreviewList from "../components/RecipePreviewList";
 
   export default {
     name: "favorites",
     components: {
-      RecipePreview
+      // RecipePreview
+      RecipePreviewList
     },
     data() {
       return {
@@ -49,41 +53,47 @@ import RecipePreview from "../components/RecipePreview";
         isEmpty: true,
       }
     },
-    mounted() 
-    {
-    this.showFavoriteRecipes();  
-    },
+    // mounted() 
+    // {
+    // this.showFavoriteRecipes();  
+    // },
     methods:{
-      async showFavoriteRecipes()
-    {
-        try{
-          let response = await this.axios.get(
-            this.$root.store.server_domain + "/users/favorites",
-          );
+    //   async showFavoriteRecipes()
+    // {
+    //     try{
+    //       let response = await this.axios.get(
+    //         this.$root.store.server_domain + "/users/favorites",
+    //       );
 
-          response = JSON.parse(JSON.stringify(response.data))
+    //       response = JSON.parse(JSON.stringify(response.data))
 
-          if(response == []) // there are no favorite recipes for the specific user
-          {
-            return;
-          }
-          else
-          {
-            this.isEmpty = false;
-            this.recipes = response
-          }
+    //       if(response == []) // there are no favorite recipes for the specific user
+    //       {
+    //         return;
+    //       }
+    //       else
+    //       {
+    //         this.isEmpty = false;
+    //         this.recipes = response
+    //       }
           
 
-        } catch (err)
-        {
-          console.log("got err")
-          console.log(err.response);
-        }
-      },
-          isEmptyFavorites()
+    //     } catch (err)
+    //     {
+    //       console.log("got err")
+    //       console.log(err.response);
+    //     }
+    //   },
+    isEmptyFavorites()
     {
         return this.isEmpty;
     },
+
+    async getisEmpty(data)
+    {
+      this.isEmpty = data;
+    }
+
     }, 
   }
   
