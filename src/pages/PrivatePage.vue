@@ -17,8 +17,8 @@
 
 <br><br><br>
 
-      <div class="family_recipes" v-if="isEmptyPrivate()">
-        <RecipePreviewList @isEmpty="doSomething" class="RandomRecipes center" />
+      <div class="private_recipes" v-if="isEmptyPrivate()">
+        <RecipePreviewList @isEmpty="getisEmpty" id="privateRecipeID" class="PrivateRecipes center" />
       </div>
 
       <b-container v-if="isEmptyPrivate()">
@@ -81,11 +81,12 @@ import RecipePreviewList from "../components/RecipePreviewList";
     //       console.log(err.response);
     //     }
     //   },
-        isEmptyPrivate()
+    isEmptyPrivate()
     {
         return this.isEmpty;
     },
-    async doSomething(data)
+
+    async getisEmpty(data)
     {
       this.isEmpty = data;
     }

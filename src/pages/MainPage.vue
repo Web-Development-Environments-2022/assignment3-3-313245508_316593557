@@ -1,16 +1,17 @@
 <template>
   <div class="container">
     <br>
-    <h1 class="title">Main Page</h1>
+    <h1 class="title"><b>Main Page</b></h1>
     <br>
     <br>
     <br>
-    <RecipePreviewList title="Random Recipes" class="RandomRecipes center" />
+    <RecipePreviewList title="Random Recipes" id="randomRecipeID" class="RandomRecipes center" />
     <br>
     <br>
     <br>
     <RecipePreviewList
       title="Last Viewed Recipes"
+      id="lastWatchedRecipeID"
       :class="{
         RandomRecipes: true,
         blur: !$root.store.username,
