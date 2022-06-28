@@ -23,7 +23,7 @@
         </span>
 
         <span v-if="!$root.store.username">
-          <b-nav-item to="/login">Login</b-nav-item>
+          <b-nav-item id="abc" to="/login">Login</b-nav-item>
         </span>
 
         <span v-else>
@@ -98,3 +98,12 @@ export default {
   color: #42b983;
 }
 </style>
+
+
+
+<!-- 
+notes:
+1. change layout of recipes (main/search/personal pages)
+2. create recipe -> modal
+3. add function of add to favorites
+4. validations -->

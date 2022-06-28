@@ -81,7 +81,9 @@ export default {
         aggregateLikes,
         readyInMinutes,
         image,
-        title
+        title,
+        watched,
+        favorite
       } = response.data;
       console.log(aggregateLikes)
 
@@ -100,7 +102,9 @@ export default {
         aggregateLikes,
         readyInMinutes,
         image,
-        title
+        title,
+        watched,
+        favorite
       };
 
       this.recipe = _recipe;

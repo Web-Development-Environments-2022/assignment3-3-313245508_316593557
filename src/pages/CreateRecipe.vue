@@ -128,7 +128,7 @@
         
 
         const response = await this.axios.post(
-          this.$root.store.server_domain + "/users/private",
+          this.$root.store.server_domain + "/users/private",{ withCredentials: true, credentials: "include" },
 
           {
             name: new_recipe["recipe_name"],

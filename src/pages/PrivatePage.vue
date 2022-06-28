@@ -50,23 +50,20 @@ import RecipePreview from "../components/RecipePreview";
     {
         try{
           let response = await this.axios.get(
-            this.$root.store.server_domain + "/users/private",{
-              params: 
-              {
-
-              }
-            }
+            this.$root.store.server_domain + "/users/private",{ withCredentials: true, credentials: "include" }
           );
+
+          response = JSON.parse(JSON.stringify(response.data))
+
           if(response == []) // there are no family recipes for the specific user
           {
             return;
           }
           else
           {
-            isEmpty = false;
-            const searchResults = response.data;
-            this.recipes = [];
-            this.recipes.push(...searchResults);
+            console.log("gereerererere")
+            this.isEmpty = false;
+            this.recipes = response
           }
           
 

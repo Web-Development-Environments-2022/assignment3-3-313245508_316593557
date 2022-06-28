@@ -1,9 +1,13 @@
 <template>
   <div class="container">
     <h1 class="title">Main Page</h1>
+    <br>
+    <br>
+    <br>
     <RecipePreviewList title="Random Recipes" class="RandomRecipes center" />
-    <router-link v-if="!$root.store.sername" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ !$root.store.username }}
+    <br>
+    <br>
+    <br>
     <RecipePreviewList
       title="Last Viewed Recipes"
       :class="{
@@ -33,6 +37,12 @@ export default {
 <style lang="scss" scoped>
 .RandomRecipes {
   margin: 10px 0 10px;
+  background-image: "https://media.istockphoto.com/photos/healthy-flat-lay-of-sliced-vegetables-composition-picture-id1198220441";
+
+}
+.title 
+{
+  text-align: center;
 }
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
