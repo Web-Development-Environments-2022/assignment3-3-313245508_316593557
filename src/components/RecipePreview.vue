@@ -38,7 +38,7 @@
             </b-col>
 
             <b-col v-else>
-              <b-button variant="outline-info">Marked as favorite</b-button>
+              <b-button variant="outline-info" disabled>Marked as favorite</b-button>
             </b-col>
             <!-- check me! -->
 

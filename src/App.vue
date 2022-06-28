@@ -17,7 +17,11 @@
             <b-dropdown-item to="/users/private">Private</b-dropdown-item>
             <b-dropdown-item to="/users/favorites">Favorite</b-dropdown-item>
             <b-dropdown-item to="/users/family">Family</b-dropdown-item>
-            <b-dropdown-item to="/users/createRecipe">Create Recipe</b-dropdown-item>
+            <b-dropdown-item v-b-modal.modal-no-backdrop>Create Recipe</b-dropdown-item>
+
+            <b-modal id="modal-no-backdrop" hide-footer content-class="shadow" title="Create Recipe">
+                  <CreateRecipe/>
+              </b-modal>
           </b-nav-item-dropdown>
           
         </span>
@@ -33,48 +37,26 @@
         </b-navbar-nav>
       </b-navbar>
     </div>
-
-<!-- 
-    <div id="nav">
-      <router-link :to="{ name: 'main' }">Main page</router-link>|
-      <router-link :to="{ name: 'search' }">Search</router-link>|
-      <span v-if="!$root.store.username">
-        <router-link :to="{ name: 'register' }">Register</router-link>|
-        <router-link :to="{ name: 'login' }">Login</router-link>|
-        
-      </span>
-      <span v-else>
-        {{ $root.store.username }}: <button @click="Logout">Logout</button>| 
-        <router-link :to="{ name: 'createRecipe' }">Create recipe</router-link>| 
-        <router-link :to="{ name: 'favorites' }">Favorite</router-link>|
-        <router-link :to="{ name: 'private' }">Private</router-link>|
-        <router-link :to="{ name: 'family' }">Family</router-link>|
-      </span>
-
-      
-
-    </div> -->
     <router-view />
   </div>
 </template>
 
 <script>
+import CreateRecipe from './pages/CreateRecipe.vue';
 export default {
-  name: "App",
-  methods: {
-    async Logout() {
-
-      const response = await this.axios.post(
-          this.$root.store.server_domain +"/Logout"
-        );
-      this.$root.store.logout();
-      this.$root.toast("Logout", "User logged out successfully", "success");
-
-      this.$router.push("/").catch(() => {
-        this.$forceUpdate();
-      });
-    }
-  }
+    name: "App",
+    isModalVisible: false,
+    methods: {
+        async Logout() {
+            const response = await this.axios.post(this.$root.store.server_domain + "/Logout");
+            this.$root.store.logout();
+            this.$root.toast("Logout", "User logged out successfully", "success");
+            this.$router.push("/").catch(() => {
+                this.$forceUpdate();
+            });
+        }
+    },
+    components: { CreateRecipe }
 };
 </script>
 

@@ -90,9 +90,24 @@
 
       </b-form-group>
       <br>
+      <table align="center">
+        <td>
+          <b-button type="submit" variant="primary">Submit</b-button>
+        </td>
+        <td>
 
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+        </td>
+        <td>
+          
+        </td>
+        <td>
+
+        </td>
+        <td>
+      <b-button type="reset">Reset</b-button>
+        </td>
+
+      </table>
     </b-form>
    
   </div>
