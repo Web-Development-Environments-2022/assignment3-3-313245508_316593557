@@ -2,12 +2,20 @@
 <template>
   <div>
   <b-container>
-    <br>
-      <h1 class="title">
+    <div :style="{
+        'background-image': `url(https://media.istockphoto.com/photos/healthy-flat-lay-of-sliced-vegetables-composition-picture-id1198220441?k=20&m=1198220441&s=612x612&w=0&h=u9Z7_jok37dMOl41oRovtsIyUk_yWDwH_pADOOwSalg=)`,}">
+    <br><br><br>
+
+      <h1 class = "title">
         <b>
-        Private Recipes:
+        Private Recipes
         </b>
+        <br><br>
       </h1>
+        <br>
+    </div>
+
+<br><br><br>
 
       <div class="family_recipes" v-if="isEmptyPrivate()">
         <RecipePreviewList @isEmpty="doSomething" class="RandomRecipes center" />

@@ -6,7 +6,7 @@
     <br>
 
     <b-form-input v-if="HavePastSearches()" v-model="query" placeholder="Search recipe"></b-form-input>
-    <!-- <b-form-input v-else v-model="query" placeholder={{lastSearchedQuery}}></b-form-input> -->
+    <b-form-input v-else v-model="query" :placeholder="lastSearchedQuery"></b-form-input>
 
     
     <br>
@@ -173,38 +173,35 @@ import RecipePreview from "../components/RecipePreview";
           { value: 'Tree Nut', text: 'Tree Nut' },
           { value: 'Wheat', text: 'Wheat' }
         ],
-
-
         
       }
     },
     mounted()
     {
-      this.updateLastWatched();
+      this.updateLastSearched();
     },
     methods:
     {
       HavePastSearches()
       {
-        return this.lastSearched;
+        console.log("flag")
+        console.log(this.lastSearched)
+        return !this.lastSearched;
       },
       async updateLastSearched()
       {
         try{
           let response = await this.axios.get(
-            this.$root.store.server_domain + "/users/lastwatched", ///////////////////////////////////////////////////////////////
+            this.$root.store.server_domain + "/users/lastSearched", 
           );
-
-          response = JSON.parse(JSON.stringify(response.data))
-
-          if(response == []) // there are no favorite recipes for the specific user
+          if(response.data[0] == null) // there are no favorite recipes for the specific user
           {
             return;
           }
           else
           {
             this.lastSearched = true;
-            this.lastSearchedQuery = response
+            this.lastSearchedQuery = response.data[0]
           }
           
 
@@ -217,7 +214,6 @@ import RecipePreview from "../components/RecipePreview";
       isEmpty(){
         if(this.recipes.length > 0)
         {
-         
           return true
         }
         else

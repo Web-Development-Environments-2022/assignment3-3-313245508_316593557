@@ -2,14 +2,19 @@
 <template>
   <div>
   <b-container>
-    <br>
+    <div :style="{
+        'background-image': `url(https://media.istockphoto.com/photos/healthy-flat-lay-of-sliced-vegetables-composition-picture-id1198220441?k=20&m=1198220441&s=612x612&w=0&h=u9Z7_jok37dMOl41oRovtsIyUk_yWDwH_pADOOwSalg=)`,}">
+    <br><br><br>
+
       <h1 class = "title">
-         <b>
+        <b>
         Family Recipes
         </b>
+        <br><br>
       </h1>
-      <br>
-
+        <br>
+    </div>
+<br><br><br>
       <div class="family_recipes">
         <div class="family_recipes" v-for="r in recipes" :key="r.id">
             <RecipePreview class="recipePreview" :recipe="r" />

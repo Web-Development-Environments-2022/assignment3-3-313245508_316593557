@@ -1,12 +1,22 @@
 
-<template>
-  <div>
+<template class="aaa">
+      <div>
   <b-container>
+    <div :style="{
+        'background-image': `url(https://media.istockphoto.com/photos/healthy-flat-lay-of-sliced-vegetables-composition-picture-id1198220441?k=20&m=1198220441&s=612x612&w=0&h=u9Z7_jok37dMOl41oRovtsIyUk_yWDwH_pADOOwSalg=)`,}">
+    <br><br><br>
+
       <h1 class = "title">
         <b>
-        Favorite Recipes:
+        Favorite Recipes
         </b>
+        <br><br>
       </h1>
+        <br>
+    </div>
+
+<br><br><br>
+
 
       <div class="favorite_recipes">
         <div class="favorite_recipes" v-for="r in recipes" :key="r.id">
