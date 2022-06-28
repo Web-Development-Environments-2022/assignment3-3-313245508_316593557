@@ -4,12 +4,12 @@
     <br>
     <h1 class = "title"><b>Search Recipes</b></h1>
     <br>
-    <b-form-input v-model="query" placeholder="Search recipe"></b-form-input>
-    <!-- <div class="mt-2">Value: {{ query }}</div> -->
+
+    <b-form-input v-if="HavePastSearches()" v-model="query" placeholder="Search recipe"></b-form-input>
+    <!-- <b-form-input v-else v-model="query" placeholder={{lastSearchedQuery}}></b-form-input> -->
+
     
     <br>
-
-
       <b-container>
         <b-row>
           <b-col>
@@ -19,10 +19,8 @@
         <b-form-select v-model="num_of_result_display" :options="num_of_result"></b-form-select>
           </b-col>
         </b-row>
-
         <br>
         <br>
-
 
         <b-row>
           <b-col>
@@ -107,8 +105,9 @@ import RecipePreview from "../components/RecipePreview";
     data() {
       return {
         recipes: [],
-        query: '', 
-
+        lastSearched: false,
+        lastSearchedQuery: "",
+        query: '',
         num_of_result_display: [],
         num_of_result: [
           { value: '5', text: '5' },
@@ -179,7 +178,42 @@ import RecipePreview from "../components/RecipePreview";
         
       }
     },
-    methods:{
+    mounted()
+    {
+      this.updateLastWatched();
+    },
+    methods:
+    {
+      HavePastSearches()
+      {
+        return this.lastSearched;
+      },
+      async updateLastSearched()
+      {
+        try{
+          let response = await this.axios.get(
+            this.$root.store.server_domain + "/users/lastwatched", ///////////////////////////////////////////////////////////////
+          );
+
+          response = JSON.parse(JSON.stringify(response.data))
+
+          if(response == []) // there are no favorite recipes for the specific user
+          {
+            return;
+          }
+          else
+          {
+            this.lastSearched = true;
+            this.lastSearchedQuery = response
+          }
+          
+
+        } catch (err)
+        {
+          console.log("got err")
+          console.log(err.response);
+        }
+      },
       isEmpty(){
         if(this.recipes.length > 0)
         {
@@ -213,6 +247,8 @@ import RecipePreview from "../components/RecipePreview";
           const searchResults = response.data;
           this.recipes = [];
           this.recipes.push(...searchResults);
+
+
 
         } catch (err){
           console.log("got errorrr")

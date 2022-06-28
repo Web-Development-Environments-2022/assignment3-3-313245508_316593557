@@ -87,6 +87,34 @@ export default {
     recipe: {
       type: Object,
       required: true
+    },
+    methods:{
+      async addToFavorites()
+      {
+         try{
+          let response = await this.axios.post(
+            this.$root.store.server_domain + "/users/favorites",{
+              params: {
+              recipeId : this.id,
+              }}
+          );
+
+          if(response == 1) // the recipe has been added to the user favorite recipes
+          {
+            this.isFavorite = true
+          }
+          else
+          {
+            this.isFavorite = false;
+            // what should we do now?
+          }
+        } 
+        catch (err)
+        {
+          console.log("got err")
+          console.log(err.response);
+        }
+      },
     }
 
     // id: {

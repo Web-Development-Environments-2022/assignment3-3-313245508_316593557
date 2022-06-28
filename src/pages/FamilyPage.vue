@@ -2,11 +2,13 @@
 <template>
   <div>
   <b-container>
-      <h3>
+    <br>
+      <h1 class = "title">
          <b>
-        Family Recipes:
+        Family Recipes
         </b>
-      </h3>
+      </h1>
+      <br>
 
       <div class="family_recipes">
         <div class="family_recipes" v-for="r in recipes" :key="r.id">
@@ -15,7 +17,7 @@
       </div>
 
         <b-container v-if="isEmptyFamily()">
-      <h3>
+      <h3 class="title">
         There are no family recipes
       </h3>
         </b-container>
@@ -85,3 +87,13 @@ import RecipePreview from "../components/RecipePreview";
   }
   
 </script>
+
+
+<style>
+
+.title 
+{
+  text-align: center;
+}
+
+</style>

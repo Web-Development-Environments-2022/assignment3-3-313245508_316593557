@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <br>
     <h1 class="title">Main Page</h1>
     <br>
     <br>

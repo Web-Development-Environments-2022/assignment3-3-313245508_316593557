@@ -2,11 +2,11 @@
 <template>
   <div>
   <b-container>
-      <h3>
+      <h1 class = "title">
         <b>
         Favorite Recipes:
         </b>
-      </h3>
+      </h1>
 
       <div class="favorite_recipes">
         <div class="favorite_recipes" v-for="r in recipes" :key="r.id">
@@ -15,7 +15,7 @@
       </div>
 
         <b-container v-if="isEmptyFavorites()">
-      <h3>
+      <h3 class = "title">
         There are no favorite recipes
       </h3>
         </b-container>
@@ -48,23 +48,19 @@ import RecipePreview from "../components/RecipePreview";
     {
         try{
           let response = await this.axios.get(
-            this.$root.store.server_domain + "/users/favorites",{
-              params: 
-              {
-
-              }
-            }
+            this.$root.store.server_domain + "/users/favorites",
           );
+
+          response = JSON.parse(JSON.stringify(response.data))
+
           if(response == []) // there are no favorite recipes for the specific user
           {
             return;
           }
           else
           {
-            isEmpty = false;
-            const searchResults = response.data;
-            this.recipes = [];
-            this.recipes.push(...searchResults);
+            this.isEmpty = false;
+            this.recipes = response
           }
           
 
@@ -82,3 +78,13 @@ import RecipePreview from "../components/RecipePreview";
   }
   
 </script>
+
+
+<style>
+
+.title 
+{
+  text-align: center;
+}
+
+</style>
