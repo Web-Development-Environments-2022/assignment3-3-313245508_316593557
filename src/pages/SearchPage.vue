@@ -1,36 +1,82 @@
 
 <template>
   <div>
-    <p><b>Enter query:</b></p>
+    <br>
+    <h1 class = "title"><b>Search Recipes</b></h1>
+    <br>
     <b-form-input v-model="query" placeholder="Search recipe"></b-form-input>
     <!-- <div class="mt-2">Value: {{ query }}</div> -->
     
     <br>
-    <p><b>Select number of results:</b></p>
-    <b-form-select v-model="num_of_result_display" :options="num_of_result"></b-form-select>
-    
-    <br>
-    <p><b>Select Cuisine: (Hold ctrl to select multiple options)</b></p>
-    <b-form-select v-model="cuisine_display" :options="cuisine" multiple :select-size="4"></b-form-select>
-    <br>
-    <div class="mt-3">Choosed cuisines: <strong>{{ cuisine_display }}</strong></div>
-    
-    <br>
-    <p><b>Select Diet type: (Hold ctrl to select multiple options)</b></p>
-    <b-form-select v-model="diet_display" :options="diet" multiple :select-size="4"></b-form-select>
-    <br>
-    <div class="mt-3">Choosed diet types: <strong>{{ diet_display }}</strong></div>
 
 
-    <br>
-    <p><b>Select Intolerances: (Hold ctrl to select multiple options)</b></p>
-    <b-form-select v-model="intolerance_display" :options="intolerance" multiple :select-size="4"></b-form-select>
-    <br>
-    <div class="mt-3">Choosed intolerances: <strong>{{ intolerance_display }}</strong></div>
-    <br>
+      <b-container>
+        <b-row>
+          <b-col>
+        <p><b>Select number of results:</b></p>
+          </b-col>
+          <b-col class = "title">
+        <b-form-select v-model="num_of_result_display" :options="num_of_result"></b-form-select>
+          </b-col>
+        </b-row>
+
+        <br>
+        <br>
+
+
+        <b-row>
+          <b-col>
+        <p><b>Select Cuisine: (Hold ctrl to select multiple options)</b></p>
+          </b-col>
+          <b-col class = "title">
+        <b-form-select v-model="cuisine_display" :options="cuisine" multiple :select-size="4"></b-form-select>
+          </b-col>
+        </b-row>
+        <b-row>
+                  <div class="mt-3">Choosed cuisines: <strong>{{ cuisine_display }}</strong></div>
+        </b-row>
+
+
+        <br>
+        <br>
+
+
+        <b-row>
+          <b-col>
+        <p><b>Select Diet type: (Hold ctrl to select multiple options)</b></p>
+          </b-col>
+          <b-col class = "title">
+        <b-form-select v-model="diet_display" :options="diet" multiple :select-size="4"></b-form-select>
+          </b-col>
+        </b-row>
+        <b-row>
+        <div class="mt-3">Choosed diet types: <strong>{{ diet_display }}</strong></div>
+        </b-row>
+
+
+        <br>
+        <br>
+
+
+
+        <b-row>
+          <b-col>
+        <p><b>Select Intolerances: (Hold ctrl to select multiple options)</b></p>
+          </b-col>
+          <b-col class = "title">
+        <b-form-select v-model="intolerance_display" :options="intolerance" multiple :select-size="4"></b-form-select>
+          </b-col>
+        </b-row>
+        <b-row>
+        <div class="mt-3">Choosed intolerances: <strong>{{ intolerance_display }}</strong></div>
+        </b-row>
+    </b-container>
 
     <br>
-    <b-button variant="outline-primary" @click='Search'> Search </b-button>
+    <br>
+    <div class = "title">
+    <b-button class = "title" variant="outline-primary" @click='Search'> Search </b-button>
+    </div>
   
 
   <b-container v-if="isEmpty()">
@@ -190,3 +236,15 @@ import RecipePreview from "../components/RecipePreview";
     }
   }
 </script>
+
+
+<style>
+
+
+.title 
+{
+  text-align: center;
+  align-items: center;
+}
+
+</style>
