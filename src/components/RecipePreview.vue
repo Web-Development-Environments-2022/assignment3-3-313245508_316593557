@@ -1,55 +1,79 @@
 <template>
-<div>
-
-  <!-- <card> -->
-
-      <div :title="recipe.title" class="recipe-title">
+  <div>
+    <!-- <div :title="recipe.title" class="recipe-title">
       <b>
         {{ recipe.title }}
       </b>
-      </div>
+    </div>
 
-<div>
-
-    <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }" class="recipe-preview">
-      <div class="recipe-body">
-        <img v-if="image_load" :src="recipe.image" class="recipe-image" />
-      </div>
-    </router-link>
-
-</div>
-
-    <br>
-    <br>
-    <br>
     <div>
-      <!-- <b-container> -->
-        <!-- <b-row>
-          <b-col> -->
-            <li>{{ recipe.readyInMinutes }} minutes</li>
-            <li>{{ recipe.aggregateLikes }} likes</li>
-            <li  v-if = recipe.watched > watched: yes </li>
-            <li  v-else> watched: no </li>
-
-            <li v-if = recipe.favorite>favorite: yes</li>
-            <li  v-else> favorite: no </li>
-          <!-- </b-col>
-
-          <b-col> -->
-            <b-button variant="outline-info">Add to favorites</b-button>
-          <!-- </b-col>
-        </b-row> -->
-      <!-- </b-container> -->
+      <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }" class="recipe-preview">
+        <div class="recipe-body">
+          <img v-if="image_load" :src="recipe.image" class="recipe-image" />
+        </div>
+      </router-link>
     </div>
-  <!-- </card> -->
 
-    </div>
+    <br>
+    <br>
+    <br>
+
+    <li>{{ recipe.readyInMinutes }} minutes</li>
+    <li>{{ recipe.aggregateLikes }} likes</li>
+    <li  v-if = recipe.watched > watched: yes </li>
+    <li  v-else> watched: no </li>
+    <li v-if = recipe.favorite>favorite: yes</li>
+    <li  v-else> favorite: no </li>
+    <br>
+
+    <b-button variant="outline-info">Add to favorites</b-button> -->
+
+
+    <card>
+      <div :title="recipe.title" class="recipe-title">
+        <b>
+          {{ recipe.title }}
+        </b>
+      </div>
+
+      <div>
+        <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }" class="recipe-preview">
+          <div class="recipe-body">
+            <img v-if="image_load" :src="recipe.image" class="recipe-image" />
+          </div>
+        </router-link>
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+      <div>
+        <b-container>
+          <b-row>
+            <b-col>
+              <li>{{ recipe.readyInMinutes }} minutes</li>
+              <li>{{ recipe.aggregateLikes }} likes</li>
+              <li  v-if = recipe.watched > watched: yes </li>
+              <li  v-else> watched: no </li>
+              <li v-if = recipe.favorite>favorite: yes</li>
+              <li  v-else> favorite: no </li>
+            </b-col>
+
+            <b-col>
+              <b-button variant="outline-info">Add to favorites</b-button>
+            </b-col>
+          </b-row>
+        </b-container>
+      </div>
+    </card>
+  </div>
 </template>
 
 <script>
 export default {
   mounted() {
-    this.axios.get(this.recipe.image).then((i) => {
+    this.axios.get(this.recipe.image, { withCredentials: false}).then((i) => {
       this.image_load = true;
     });
     console.log(this.recipe)
