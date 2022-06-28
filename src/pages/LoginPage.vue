@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <h1 class="title">Login</h1>
+    <br>
+    <h1 class="title"><b>Login</b></h1>
     <b-form @submit.prevent="onLogin">
       <b-form-group
         id="input-group-Username"

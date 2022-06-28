@@ -201,7 +201,7 @@ import RecipePreview from "../components/RecipePreview";
           else
           {
             this.lastSearched = true;
-            this.lastSearchedQuery = response.data[0]
+            this.lastSearchedQuery = "Last Searched: " + response.data[0]
           }
           
 
@@ -280,3 +280,5 @@ import RecipePreview from "../components/RecipePreview";
 }
 
 </style>
+
+

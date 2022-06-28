@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <h1 class="title">Register</h1>
+    <br>
+    <h1 class="title"><b>Register</b></h1>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
       <b-form-group
         id="input-group-username"

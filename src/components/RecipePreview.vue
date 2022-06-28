@@ -32,9 +32,16 @@
               <li  v-else> favorite: no </li>
             </b-col>
 
-            <b-col>
-              <b-button variant="outline-info">Add to favorites</b-button>
+          <!-- check me! -->
+            <b-col v-if = !recipe.favorite>
+              <b-button @click="addToFavorites()" variant="outline-info">Add to favorites</b-button>
             </b-col>
+
+            <b-col v-else>
+              <b-button variant="outline-info">Marked as favorite</b-button>
+            </b-col>
+            <!-- check me! -->
+
           </b-row>
         </b-container>
       </div>
@@ -73,12 +80,11 @@ export default {
 
           if(response == 1) // the recipe has been added to the user favorite recipes
           {
-            this.isFavorite = true
+            recipe.favorite = true
           }
           else
           {
-            this.isFavorite = false;
-            // what should we do now?
+            recipe.favorite = false;
           }
         } 
         catch (err)

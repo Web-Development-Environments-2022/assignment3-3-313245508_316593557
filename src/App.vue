@@ -107,7 +107,13 @@ export default {
 
 <!-- 
 notes:
-1. change layout of recipes (main/search/personal pages)
+1. change layout of recipes (search/personal pages)
 2. create recipe -> modal
-3. add function of add to favorites
-4. validations -->
+3. favorite button
+3. family recipe preview/list compenent
+4. last recipes watched in the main page
+5. validations
+6. design
+7. Real Server..
+8. change yamel
+-->
