@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <h1>Create your private Recipe:</h1>
@@ -83,30 +82,11 @@
       <br>
 
      
-      <b-form-group id="input-group-5" v-slot="{ ariaDescribedby }">
-        <b-form-checkbox-group
-          v-model="form.vegetarian"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-          <b-form-checkbox value="vegetarian">Vegetarian</b-form-checkbox>
-        </b-form-checkbox-group>
+      <b-form-group id="input-group-5">
 
-        <b-form-checkbox-group
-          v-model="form.vegan"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-          <b-form-checkbox value="vegan">Vegan</b-form-checkbox>
-        </b-form-checkbox-group>
-
-        <b-form-checkbox-group
-          v-model="form.gluten_free"
-          id="checkboxes-4"
-          :aria-describedby="ariaDescribedby"
-        >
-          <b-form-checkbox value="gluten_free">Gluten Free</b-form-checkbox>
-        </b-form-checkbox-group>
+        <b-form-checkbox v-model='vegetarian' uncheckd-value="0" value="1">Vegetarian</b-form-checkbox>
+        <b-form-checkbox v-model='vegan' uncheckd-value="0" value="1">Vegan</b-form-checkbox>
+        <b-form-checkbox v-model='gluten_free' uncheckd-value="0" value="1">Gluten Free</b-form-checkbox>
 
       </b-form-group>
       <br>
@@ -128,11 +108,11 @@
           amount_of_meals: '',
           ingredients: '',
           instructions: '',
-          image: '',
-          vegetarian: [],
-          vegan:[],
-          gluten_free:[]
+          image: ''
         },
+        vegetarian: '0',
+        vegan:'0',
+        gluten_free:'0',
         show: true
       }
     },
@@ -140,32 +120,11 @@
       async onSubmit(event) {
         event.preventDefault()
         const new_recipe = this.form
-        console.log(JSON.stringify(new_recipe))
-        if ("vegetarian" in new_recipe)
-        {
-          new_recipe["vegetarian"] = 1
-        }
-        else
-        {
-          new_recipe["vegetarian"] = 0
-        }
-        if (!typeof new_recipe["vegan"] === undefined)
-        {
-          new_recipe['vegan'] = 1
-        }
-        else
-        {
-          new_recipe['vegan'] = 0
-        }
-        if (!typeof new_recipe["gluten_free"] == undefined)
-        {
-          new_recipe['gluten_free'] = 1
-        }
-        else
-        {
-          new_recipe['gluten_free'] = 0
-        }
-        console.log(JSON.stringify(new_recipe))
+        console.log(new_recipe["recipe_name"])
+        console.log(this.vegetarian)
+        console.log(this.vegan)
+        console.log(this.gluten_free)
+
         
 
         const response = await this.axios.post(
@@ -178,9 +137,9 @@
             ingredients: new_recipe["ingredients"],
             instructions: new_recipe["instructions"],
             popularity: 0,
-            vegan: new_recipe["vegan"],
-            vegetarian: new_recipe["vegetarian"],
-            gluten_free: new_recipe["gluten_free"]
+            vegan: this.vegan,
+            vegetarian: this.vegetarian,
+            gluten_free: this.gluten_free
           }
         )
 
@@ -196,9 +155,9 @@
         this.form.ingredients = ''
         this.form.instructions = ''
         this.form.image = ''
-        this.form.vegetarian = []
-        this.form.vegan = []
-        this.form.gluten_free = []
+        this.form.vegetarian = ''
+        this.form.vegan = ''
+        this.form.gluten_free = ''
         // Trick to reset/clear native browser form validation state
         this.show = false
         this.$nextTick(() => {

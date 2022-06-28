@@ -1,11 +1,44 @@
 <template>
   <div id="app">
+
+    <div>
+      <b-navbar type="dark" variant="dark">
+        <b-navbar-nav>
+          <b-nav-item to="/">Main page</b-nav-item>
+          <b-nav-item to="/search">Search</b-nav-item>
+
+        <span v-if="!$root.store.username">
+          <b-nav-item to="/register">Register</b-nav-item>
+        </span>
+
+        <span v-else>
+
+          <b-nav-item-dropdown text="Personal" down>
+            <b-dropdown-item to="/users/private">Private</b-dropdown-item>
+            <b-dropdown-item to="/users/favorites">Favorite</b-dropdown-item>
+            <b-dropdown-item to="/users/family">Family</b-dropdown-item>
+            <b-dropdown-item to="/users/createRecipe">Create Recipe</b-dropdown-item>
+          </b-nav-item-dropdown>
+          
+        </span>
+
+        <span v-if="!$root.store.username">
+          <b-nav-item to="/login">Login</b-nav-item>
+        </span>
+
+        <span v-else>
+          <b-nav-item @click="Logout">Logout</b-nav-item>
+
+      </span>
+        </b-navbar-nav>
+      </b-navbar>
+    </div>
+
+<!-- 
     <div id="nav">
       <router-link :to="{ name: 'main' }">Main page</router-link>|
       <router-link :to="{ name: 'search' }">Search</router-link>|
-      <!-- {{ !$root.store.username }} -->
       <span v-if="!$root.store.username">
-        <!-- Guest: -->
         <router-link :to="{ name: 'register' }">Register</router-link>|
         <router-link :to="{ name: 'login' }">Login</router-link>|
         
@@ -20,7 +53,7 @@
 
       
 
-    </div>
+    </div> -->
     <router-view />
   </div>
 </template>
