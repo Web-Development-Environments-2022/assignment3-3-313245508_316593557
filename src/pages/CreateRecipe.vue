@@ -120,15 +120,9 @@
       async onSubmit(event) {
         event.preventDefault()
         const new_recipe = this.form
-        console.log(new_recipe["recipe_name"])
-        console.log(this.vegetarian)
-        console.log(this.vegan)
-        console.log(this.gluten_free)
-
-        
 
         const response = await this.axios.post(
-          this.$root.store.server_domain + "/users/private",{ withCredentials: true, credentials: "include" },
+          this.$root.store.server_domain + "/users/private",
 
           {
             name: new_recipe["recipe_name"],
@@ -136,6 +130,7 @@
             amount_of_meals: new_recipe["amount_of_meals"],
             ingredients: new_recipe["ingredients"],
             instructions: new_recipe["instructions"],
+            image: new_recipe['image'],
             popularity: 0,
             vegan: this.vegan,
             vegetarian: this.vegetarian,

@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <h3>
-      {{ title }}:
+      {{ title }}
       <slot></slot>
     </h3>
     <br>
@@ -25,11 +25,15 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    isEmpty: {
+      type: Boolean
     }
+    
   },
   data() {
     return {
-      recipes: []
+      recipes: [],
     };
   },
   mounted() {
@@ -42,8 +46,10 @@ export default {
       // console.log("hahahaha1")
       // this.lastWatchedRecipes();
       this.getLastWached();
-
-
+    }
+    else if (this.title == "Private Recipes")
+    {
+      this.showPrivateRecipes()
     }
     
   },
@@ -83,13 +89,44 @@ export default {
       }
     },
 
-    async showSearchedRecipes() {
-      try{
+    async showPrivateRecipes()
+    {
+        try{
+          let response = await this.axios.get(
+            this.$root.store.server_domain + "/users/private",{ withCredentials: true, credentials: "include" }
+          );
 
-      } catch (error) {
-        console.log(error);
+          response = JSON.parse(JSON.stringify(response.data))
+
+          if(response.length == 0) // there are no family recipes for the specific user
+          {
+            // return;
+          }
+          else
+          {
+            console.log("response")
+            console.log(response)
+            this.isEmpty = false;
+            this.recipes = response
+            this.$emit('isEmpty', this.isEmpty)
+          }
+          
+
+        } catch (err)
+        {
+          console.log("got err")
+          console.log(err.response);
+        }
+      },
+
+      async showSearchedRecipes() 
+      {
+        try{
+
+        } catch (error) {
+          console.log(error);
+        }
       }
-    }
   }
 };
 </script>
