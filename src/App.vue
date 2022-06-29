@@ -90,8 +90,7 @@ export default {
 <!-- 
 notes:
 1. change layout of recipes (search/personal pages)
-2. create recipe -> modal
-3. favorite button
+2. favorite button - the server get an undefined id, while in 3.3 its good!//////////////////////////////////////
 3. family recipe preview/list compenent
 4. last recipes watched in the main page
 5. validations

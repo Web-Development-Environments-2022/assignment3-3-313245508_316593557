@@ -66,19 +66,25 @@ export default {
     recipe: {
       type: Object,
       required: true
-    },
+    }
+  },
     methods:{
       async addToFavorites()
       {
+
+        console.log(this.recipe["id"])
+
          try{
           let response = await this.axios.post(
             this.$root.store.server_domain + "/users/favorites",{
               params: {
-              recipeId : this.id,
+              recipeId : this.recipe["id"],
               }}
           );
 
-          if(response == 1) // the recipe has been added to the user favorite recipes
+          console.log(response.data)
+
+          if(response.data != "The recipe is already marked as favorite") // the recipe has been added to the user favorite recipes
           {
             recipe.favorite = true
           }
@@ -94,6 +100,7 @@ export default {
         }
       },
     }
+  
 
     // id: {
     //   type: Number,
@@ -118,8 +125,7 @@ export default {
     //     return undefined;
     //   }
     // }
-  }
-};
+  };
 </script>
 
 <style scoped>
