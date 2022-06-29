@@ -90,11 +90,10 @@ export default {
 <!-- 
 notes:
 1. change layout of recipes (search/personal pages)
-2. favorite button - the server get an undefined id, while in 3.3 its good!//////////////////////////////////////
+2. favorite button ---------------------------------------- the server get an undefined id, while in 3.3 its good!
 3. family recipe preview/list compenent
-4. last recipes watched in the main page
-5. validations
-6. design
-7. Real Server..
-8. change yamel
+4. validations
+5. design
+6. Real Server..
+7. change yamel
 -->
