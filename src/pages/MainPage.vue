@@ -4,11 +4,15 @@
     <h1 class="title"><b>Main Page</b></h1>
     <br>
     <br>
-    <br>
+    <h3><b>Random Recipes</b></h3>
     <RecipePreviewList title="Random Recipes" id="randomRecipeID" class="RandomRecipes center" />
     <br>
     <br>
     <br>
+    <h3 :class="{
+        blur: !$root.store.username,
+        center: true
+      }"><b>Last Viewed Recipes</b></h3>
     <RecipePreviewList
       title="Last Viewed Recipes"
       id="lastWatchedRecipeID"
