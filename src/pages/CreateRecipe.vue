@@ -92,7 +92,18 @@
       <br>
       <table align="center">
         <td>
-          <b-button type="submit" variant="primary">Submit</b-button>
+          <div>
+          <b-button @click="$bvModal.show('bv-modal-example')"  type="submit" variant="primary">Submit</b-button>
+          <b-modal id="bv-modal-example" hide-footer>
+          <template #modal-title>
+            Create Recipe
+          </template>
+          <div class="d-block text-center">
+            <h3>{{this.modalText}}</h3>
+          </div>
+          <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example'); updateShowModal();">Close Me</b-button>
+        </b-modal>
+      </div>
         </td>
         <td>
 
@@ -128,11 +139,19 @@
         vegetarian: '0',
         vegan:'0',
         gluten_free:'0',
-        show: true
+        show: true,
+        modalText: "You must fill up the form!"
       }
     },
     methods: {
-      async onSubmit(event) {
+      updateShowModal()
+      {
+         console.log("fuck me")
+         this.modalText ="You must fill up the form!";
+      },
+
+      async onSubmit(event) 
+      {
         event.preventDefault()
         const new_recipe = this.form
 
@@ -153,7 +172,8 @@
           }
         )
 
-        console.log(response)
+        this.modalText = response.data
+
 
       },
       onReset(event) {
