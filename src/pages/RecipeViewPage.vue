@@ -56,7 +56,9 @@ export default {
       try {
         let recipeId = this.$route.params.recipeId
         let recipeIdString = recipeId.toString();
+        console.log("trying to vue")
         console.log(recipeId)
+        console.log(recipeIdString)
         response = await this.axios.get(
           // "https://test-for-3-2.herokuapp.com/recipes/info",
           this.$root.store.server_domain + "/recipes/" + recipeIdString, { withCredentials: true, credentials: "include" }

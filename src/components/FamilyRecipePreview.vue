@@ -1,15 +1,14 @@
 <template>
   <div>
 
-    
-      <div :title="recipe.title" class="recipe-title">
+      <div :title="recipe.name" class="recipe-title">
         <b>
-          {{ recipe.title }}
+          {{ recipe.name }}
         </b>
       </div>
 
       <div>
-        <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }" class="recipe-preview">
+        <router-link :to="{ name: 'recipe', params: { recipeId: recipe.recipe_id } }" class="recipe-preview">
           <div class="recipe-body">
             <img v-if="image_load" :src="recipe.image" class="recipe-image" />
           </div>
@@ -24,23 +23,13 @@
         <b-container>
           <b-row>
             <b-col>
-              <li>{{ recipe.readyInMinutes }} minutes</li>
-              <li>{{ recipe.aggregateLikes }} likes</li>
-              <li  v-if = recipe.watched > watched: yes </li>
-              <li  v-else> watched: no </li>
-              <li v-if = recipe.favorite>favorite: yes</li>
-              <li  v-else> favorite: no </li>
+              <li><b><u>Recipe Inventor:</u></b> {{ recipe.recipe_inventor }}</li>
+              <li><b><u>When to make it:</u></b> {{ recipe.when_to_make_it }}</li>
+              <li><b><u>Ingredients:</u></b> {{ recipe.ingredients }}</li>
+              <li><b><u>Instructions:</u></b> {{ recipe.instructions }}</li>
+              
             </b-col>
 
-          <!-- check me! -->
-            <b-col v-if = !recipe.favorite>
-              <b-button @click="addToFavorites()" variant="outline-info" >{{this.button_message}}</b-button>
-            </b-col>
-
-            <b-col v-else>
-              <b-button variant="outline-info" disabled>Marked as favorite</b-button>
-            </b-col>
-            <!-- check me! -->
 
           </b-row>
         </b-container>
@@ -60,7 +49,6 @@ export default {
   data() {
     return {
       image_load: false,
-      button_message: "Add to favorites"
     };
   },
   props: {
@@ -69,38 +57,7 @@ export default {
       required: true
     }
   },
-    methods:{
-      async addToFavorites()
-      {
 
-         try{
-          let response = await this.axios.post(
-            this.$root.store.server_domain + "/users/favorites",
-            {
-              recipeId : this.recipe["id"],
-            }
-          );
-
-
-          if(response.data != "The recipe is already marked as favorite") // the recipe has been added to the user favorite recipes
-          {
-            recipe.favorite = true
-            this.button_message = "Marked as favorites amit"
-          }
-          else
-          {
-            recipe.favorite = false;
-            this.button_message = "Marked as favorites amit2"
-
-          }
-        } 
-        catch (err)
-        {
-          console.log("got err")
-          console.log(err.response);
-        }
-      },
-    }
   
 
     // id: {

@@ -21,7 +21,7 @@
 
             <b-modal id="modal-no-backdrop" hide-footer content-class="shadow" title="Create Recipe">
                   <CreateRecipe/>
-              </b-modal>
+            </b-modal>
           </b-nav-item-dropdown>
           
         </span>
@@ -90,7 +90,7 @@ export default {
 <!-- 
 notes:
 1. change layout of recipes (search/personal pages)
-2. favorite button ---------------------------------------- the server get an undefined id, while in 3.3 its good!
+2. favorite button ---------------------------------------- make it change color after it's clicked
 3. family recipe preview/list compenent
 4. validations
 5. design

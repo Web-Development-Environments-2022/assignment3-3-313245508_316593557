@@ -17,7 +17,8 @@
 
 <br><br><br>
 
-      <div class="favorites_recipes" v-if="isEmptyFavorites()">
+
+      <div class="favorites_recipes" >
         <RecipePreviewList @isEmpty="getisEmpty" id="favoriteRecipeID" class="FavoritesRecipes center" />
       </div>
       <!-- <div class="favorite_recipes">
@@ -25,12 +26,12 @@
             <RecipePreview class="recipePreview" :recipe="r" />
         </div>
       </div> -->
-
-        <b-container v-if="isEmptyFavorites()">
+      
+      <!-- <b-container>
       <h3 class = "title">
         There are no favorite recipes
       </h3>
-        </b-container>
+        </b-container> -->
     </b-container>
   </div>
 
@@ -50,7 +51,7 @@ import RecipePreviewList from "../components/RecipePreviewList";
     data() {
       return {
         recipes: [], 
-        isEmpty: true,
+        // isEmpty: true,
       }
     },
     // mounted() 
@@ -86,6 +87,8 @@ import RecipePreviewList from "../components/RecipePreviewList";
     //   },
     isEmptyFavorites()
     {
+        console.log("fav_is_empty")
+        console.log(this.isEmpty)
         return this.isEmpty;
     },
 

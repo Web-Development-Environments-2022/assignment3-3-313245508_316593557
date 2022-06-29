@@ -1,5 +1,5 @@
 <template>
-  <b-container>
+  <b-container v-if="isEmpty">
     <h3>
       <!-- {{ title }} -->
       <slot></slot>
@@ -11,6 +11,10 @@
         <RecipePreview class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
+  </b-container>
+
+  <b-container v-else>
+    <h2>There are no recipes to show</h2>
   </b-container>
 </template>
 
@@ -26,14 +30,15 @@ export default {
       type: String,
       required: true
     },
-    isEmpty: {
-      type: Boolean
-    }
+    // isEmpty: {
+    //   type: Boolean
+    // }
     
   },
   data() {
     return {
       recipes: [],
+      isEmpty: true,
     };
   },
   mounted() {
@@ -55,10 +60,7 @@ export default {
     {
       this.showFavoriteRecipes()
     }
-    else if (this.id == "familyRecipeID")
-    {
-      this.showFamilyRecipes()
-    }
+
     
   },
   methods: {
@@ -73,6 +75,7 @@ export default {
         const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
+        console.log(this.recipes)
         // console.log(this.recipes);
       } catch (error) {
         console.log(error);
@@ -104,22 +107,22 @@ export default {
           );
 
           response = JSON.parse(JSON.stringify(response.data))
-
-          if(response.length == 0) // there are no family recipes for the specific user
+          if(response.length == 0) // there are no private recipes for the specific user
           {
+            this.isEmpty = true
             // return;
           }
           else
           {
             console.log("response private")
             console.log(response)
-            this.isEmpty = false;
+            // this.isEmpty = false;
             this.recipes = response
-            this.$emit('isEmpty', this.isEmpty)
+            // this.$emit('isEmpty', this.isEmpty)
           }
         } catch (err)
         {
-          console.log(err.response);
+          console.log(err);
         }
       },
 
@@ -131,15 +134,18 @@ export default {
           );
 
           response = JSON.parse(JSON.stringify(response.data))
+          console.log("response favorite")
+          console.log(response)
           if(response.length == 0) // there are no favorite recipes for the specific user
           {
+            this.isEmpty = true
             // return;
           }
           else
           {
-            
-            this.isEmpty = false;
-            this.recipes = response
+            // this.isEmpty = false;
+            this.recipes.push(...response);
+            // this.recipes = response
             this.$emit('isEmpty', this.isEmpty)
           }
           
@@ -147,41 +153,7 @@ export default {
         } catch (err)
         {
           console.log("got err")
-          console.log(err.response);
-        }
-      },
-
-        async showFamilyRecipes()
-      {
-        try{
-          let response = await this.axios.get(
-            this.$root.store.server_domain + "/users/family",{
-           
-            }
-          );
-          console.log(response)
-          if(response.data.length == 0) // there are no family recipes for the specific user
-          {
-            // return;
-          }
-          else
-          {
-            console.log("response family")
-            
-            const searchResults = response.data;
-            console.log(searchResults)
-            this.recipes = [];
-            this.recipes.push(...searchResults);
-            console.log(this.recipes)
-            this.isEmpty = false;
-            this.$emit('isEmpty', this.isEmpty)
-          }
-          
-
-        } catch (err)
-        {
-          console.log("got err family")
-          console.log(err.response);
+          console.log(err);
         }
       },
 
@@ -198,6 +170,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.recipePreview{
+  width: 600px;
+  align-items: center;
+}
+
 .container {
   min-height: 400px;
 }
