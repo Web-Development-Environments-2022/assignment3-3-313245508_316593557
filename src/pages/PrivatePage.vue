@@ -1,22 +1,32 @@
 
 <template>
   <div>
-  <b-container>
-    <div :style="{
+
+    <b-container>
+      <div :style="{
         'background-image': `url(https://media.istockphoto.com/photos/healthy-flat-lay-of-sliced-vegetables-composition-picture-id1198220441?k=20&m=1198220441&s=612x612&w=0&h=u9Z7_jok37dMOl41oRovtsIyUk_yWDwH_pADOOwSalg=)`,}">
-    <br><br><br>
-
-      <h1 class = "title">
-        <b>
-        Private Recipes
-        </b>
-        <br><br>
-      </h1>
         <br>
-    </div>
+        <br>
+        <br>
+          <h1 class = "title">
+            <b>
+           Private Recipes
+            </b>
+            <br>
+            <br>
+          </h1>
+          <br>
+      </div>
+    </b-container>
 
-<br><br><br>
+    <br>
+    <br>
+    <br>
 
+
+    <!-- <RecipePreviewList id="privateRecipeID" class="PrivateRecipes center" /> -->
+
+<<<<<<< HEAD
       <div class="private_recipes">
         <RecipePreviewList id="privateRecipeID" class="PrivateRecipes center" />
       </div>
@@ -27,19 +37,29 @@
         </h3>
       </b-container> -->
   </b-container>
+=======
+
+    <div class="private_recipes" >
+      <RecipePreviewList @isEmpty="getisEmpty" id="privateRecipeID" class="PrivateRecipes center" />
+    </div>
+
+    <!-- <div >
+      <h3 class="title">
+        There are no private recipes
+      </h3>
+    </div> -->
+        
+>>>>>>> b4f386a786884e3347814d8f794fe2aaaef95d86
   </div>
   
 </template>
 
 <script>
-// import RecipePreview from "../components/RecipePreview";
 import RecipePreviewList from "../components/RecipePreviewList";
-
 
   export default {
     name: "private",
     components: {
-      // RecipePreview,
       RecipePreviewList
     },
     data() {
@@ -48,46 +68,20 @@ import RecipePreviewList from "../components/RecipePreviewList";
         isEmpty: true,
       }
     },
-    // mounted() 
-    // {
-    // this.showPrivateRecipes();  
-    // },
+
     methods:
     {
-    //   async showPrivateRecipes()
-    // {
-    //     try{
-    //       let response = await this.axios.get(
-    //         this.$root.store.server_domain + "/users/private",{ withCredentials: true, credentials: "include" }
-    //       );
-
-    //       response = JSON.parse(JSON.stringify(response.data))
-
-    //       if(response == []) // there are no family recipes for the specific user
-    //       {
-    //         return;
-    //       }
-    //       else
-    //       {
-    //         console.log("gereerererere")
-    //         this.isEmpty = false;
-    //         this.recipes = response
-    //       }
-          
-
-    //     } catch (err)
-    //     {
-    //       console.log("got err")
-    //       console.log(err.response);
-    //     }
-    //   },
+    
     isEmptyPrivate()
     {
+        console.log("private_is_empty")
+        console.log(this.isEmpty)
         return this.isEmpty;
     },
 
     async getisEmpty(data)
     {
+      console.log(data)
       this.isEmpty = data;
     }
 
@@ -103,5 +97,9 @@ import RecipePreviewList from "../components/RecipePreviewList";
 {
   text-align: center;
 }
+
+
+
+
 
 </style>

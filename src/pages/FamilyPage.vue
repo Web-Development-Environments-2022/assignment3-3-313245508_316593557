@@ -16,9 +16,26 @@
     </div>
 <br><br><br>
       <div class="family_recipes">
+<<<<<<< HEAD
         <RecipePreviewList id="familyRecipeID" class="FamilyRecipes center" />
       </div>
 
+=======
+        <FamilyRecipePreviewList id="familyRecipeID" class="FamilyRecipes center" />
+      </div>
+
+      <!-- <div class="family_recipes">
+        <div class="family_recipes" v-for="r in recipes" :key="r.id">
+            <RecipePreview class="recipePreview" :recipe="r" />
+        </div>
+      </div> -->
+
+        <!-- <b-container v-if="isEmptyFamily()">
+      <h3 class="title">
+        There are no family recipes
+      </h3>
+        </b-container> -->
+>>>>>>> b4f386a786884e3347814d8f794fe2aaaef95d86
     </b-container>
 
   </div>
@@ -28,19 +45,19 @@
 
 <script>
 // import RecipePreview from "../components/RecipePreview";
-import RecipePreviewList from "../components/RecipePreviewList";
+import FamilyRecipePreviewList from "../components/FamilyRecipePreviewList.vue";
 
 
   export default {
     name: "family",
     components: {
-      // RecipePreview
-      RecipePreviewList
-    },
+    // RecipePreview
+    FamilyRecipePreviewList
+},
     data() {
       return {
         recipes: [], 
-        isEmpty: true,
+
       }
     },
     // mounted() 
@@ -49,46 +66,8 @@ import RecipePreviewList from "../components/RecipePreviewList";
     // },
     methods:
     {
-    //   async showFamilyRecipes()
-    // {
-    //     try{
-    //       let response = await this.axios.get(
-    //         this.$root.store.server_domain + "/users/family",{
-    //           params: 
-    //           {
-
-    //           }
-    //         }
-    //       );
-    //       if(response == []) // there are no family recipes for the specific user
-    //       {
-    //         return;
-    //       }
-    //       else
-    //       {
-    //         isEmpty = false;
-    //         const searchResults = response.data;
-    //         this.recipes = [];
-    //         this.recipes.push(...searchResults);
-    //       }
-          
-
-    //     } catch (err)
-    //     {
-    //       console.log("got err")
-    //       console.log(err.response);
-    //     }
-    //   },
-    isEmptyFamily()
-    {
-        return this.isEmpty;
-    },
-
-    async getisEmpty(data)
-    {
-      this.isEmpty = data;
-    }
-
+    
+    
     }, 
   }
   

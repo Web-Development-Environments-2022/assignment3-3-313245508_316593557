@@ -24,7 +24,7 @@
 
         <b-row>
           <b-col>
-        <p><b>Select Cuisine: (Hold ctrl to select multiple options)</b></p>
+        <p><b>Select Cuisine: (Hold ctrl to select/deselect multiple options)</b></p>
           </b-col>
           <b-col class = "title">
         <b-form-select v-model="cuisine_display" :options="cuisine" multiple :select-size="4"></b-form-select>
@@ -41,7 +41,7 @@
 
         <b-row>
           <b-col>
-        <p><b>Select Diet type: (Hold ctrl to select multiple options)</b></p>
+        <p><b>Select Diet type: (Hold ctrl to select/deselect multiple options)</b></p>
           </b-col>
           <b-col class = "title">
         <b-form-select v-model="diet_display" :options="diet" multiple :select-size="4"></b-form-select>
@@ -59,7 +59,7 @@
 
         <b-row>
           <b-col>
-        <p><b>Select Intolerances: (Hold ctrl to select multiple options)</b></p>
+        <p><b>Select Intolerances: (Hold ctrl to select/deselect multiple options)</b></p>
           </b-col>
           <b-col class = "title">
         <b-form-select v-model="intolerance_display" :options="intolerance" multiple :select-size="4"></b-form-select>
