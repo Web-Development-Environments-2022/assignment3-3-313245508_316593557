@@ -17,20 +17,9 @@
 
 <br><br><br>
 
-      <div class="favorites_recipes" v-if="isEmptyFavorites()">
-        <RecipePreviewList @isEmpty="getisEmpty" id="favoriteRecipeID" class="FavoritesRecipes center" />
+      <div class="favorites_recipes">
+        <RecipePreviewList id="favoriteRecipeID" class="FavoritesRecipes center" />
       </div>
-      <!-- <div class="favorite_recipes">
-        <div class="favorite_recipes" v-for="r in recipes" :key="r.id">
-            <RecipePreview class="recipePreview" :recipe="r" />
-        </div>
-      </div> -->
-
-        <b-container v-if="isEmptyFavorites()">
-      <h3 class = "title">
-        There are no favorite recipes
-      </h3>
-        </b-container>
     </b-container>
   </div>
 

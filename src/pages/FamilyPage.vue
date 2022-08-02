@@ -15,21 +15,10 @@
         <br>
     </div>
 <br><br><br>
-      <div class="family_recipes" v-if="isEmptyFamily()">
-        <RecipePreviewList @isEmpty="getisEmpty" id="familyRecipeID" class="FamilyRecipes center" />
+      <div class="family_recipes">
+        <RecipePreviewList id="familyRecipeID" class="FamilyRecipes center" />
       </div>
 
-      <!-- <div class="family_recipes">
-        <div class="family_recipes" v-for="r in recipes" :key="r.id">
-            <RecipePreview class="recipePreview" :recipe="r" />
-        </div>
-      </div> -->
-
-        <b-container v-if="isEmptyFamily()">
-      <h3 class="title">
-        There are no family recipes
-      </h3>
-        </b-container>
     </b-container>
 
   </div>

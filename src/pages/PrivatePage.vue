@@ -17,15 +17,15 @@
 
 <br><br><br>
 
-      <div class="private_recipes" v-if="isEmptyPrivate()">
-        <RecipePreviewList @isEmpty="getisEmpty" id="privateRecipeID" class="PrivateRecipes center" />
+      <div class="private_recipes">
+        <RecipePreviewList id="privateRecipeID" class="PrivateRecipes center" />
       </div>
 
-      <b-container v-if="isEmptyPrivate()">
+      <!-- <b-container v-if="isEmptyPrivate()">
         <h3 class="title">
           There are no private recipes
         </h3>
-      </b-container>
+      </b-container> -->
   </b-container>
   </div>
   

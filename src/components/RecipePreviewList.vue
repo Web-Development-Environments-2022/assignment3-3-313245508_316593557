@@ -6,15 +6,38 @@
     </h3>
     <br>
     <br>
+
+    <!-- <div v-if="emptyFlag" >
+
+    <b-row v-for="n in NumOfLists">
+      <b-col v-for="r in recipes[0 + i,3 + i]" :key="r.id">
+        <RecipePreview class="recipePreview" :recipe="r" />
+      </b-col>
+      <div v-if="updateIndex()"></div>
+    </b-row>
+
+    </div> -->
+
+
+    <div v-if="emptyFlag" >
+
     <b-row>
       <b-col v-for="r in recipes" :key="r.id">
         <RecipePreview class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
+
+    </div>
+
+
+      <div v-if="!emptyFlag">
+        <b>There are no Recipes to show..</b>
+      </div>
   </b-container>
 </template>
 
 <script>
+import { async } from "q";
 import RecipePreview from "./RecipePreview.vue";
 export default {
   name: "RecipePreviewList",
@@ -34,6 +57,9 @@ export default {
   data() {
     return {
       recipes: [],
+      emptyFlag: true,
+      NumOfLists: 0,
+      i: 0,
     };
   },
   mounted() {
@@ -107,15 +133,13 @@ export default {
 
           if(response.length == 0) // there are no family recipes for the specific user
           {
-            // return;
+            this.emptyFlag = false;
+            return;
           }
           else
           {
-            console.log("response private")
-            console.log(response)
-            this.isEmpty = false;
             this.recipes = response
-            this.$emit('isEmpty', this.isEmpty)
+            updateNumOfLists(response.length)
           }
         } catch (err)
         {
@@ -133,20 +157,17 @@ export default {
           response = JSON.parse(JSON.stringify(response.data))
           if(response.length == 0) // there are no favorite recipes for the specific user
           {
-            // return;
+           this.emptyFlag = false;
+           return;
           }
           else
           {
-            
-            this.isEmpty = false;
             this.recipes = response
-            this.$emit('isEmpty', this.isEmpty)
+            updateNumOfLists(response.length)
           }
-          
-
-        } catch (err)
+        } 
+        catch (err)
         {
-          console.log("got err")
           console.log(err.response);
         }
       },
@@ -159,41 +180,56 @@ export default {
            
             }
           );
-          console.log(response)
           if(response.data.length == 0) // there are no family recipes for the specific user
           {
-            // return;
+           this.emptyFlag = false;
+           return;
           }
           else
           {
-            console.log("response family")
-            
             const searchResults = response.data;
-            console.log(searchResults)
             this.recipes = [];
             this.recipes.push(...searchResults);
-            console.log(this.recipes)
-            this.isEmpty = false;
-            this.$emit('isEmpty', this.isEmpty)
+            updateNumOfLists(response.length)
           }
-          
-
-        } catch (err)
+        } 
+        catch (err)
         {
-          console.log("got err family")
           console.log(err.response);
         }
       },
 
       async showSearchedRecipes() 
       {
-        try{
+        try
+        {
 
-        } catch (error) {
+        } 
+        catch (error) 
+        {
           console.log(error);
         }
-      }
+      }, 
+        async updateNumOfLists(len)
+      {
+        if(len <= 3)
+        {
+          this.NumOfLists = 1
+        }
+        else
+          {
+            if(len % 3 == 0)
+              this.NumOfLists = int(len / 3) 
+            else
+              this.NumOfLists = int(len / 3) + 1
+          }
+      },
+        async updateIndex()
+        {
+          this.i += 3;
+        }
   }
+  
 };
 </script>
 

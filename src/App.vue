@@ -89,9 +89,8 @@ export default {
 
 <!-- 
 notes:
-1. change layout of recipes (search/personal pages)
+1. change layout of recipes
 2. favorite button ---------------------------------------- the server get an undefined id, while in 3.3 its good!
-3. family recipe preview/list compenent
 4. validations
 5. design
 6. Real Server..
