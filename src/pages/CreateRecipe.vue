@@ -125,6 +125,12 @@
 </template>
 
 <script>
+import {
+  required,
+  minLength,
+  maxLength,
+  alpha,
+} from "vuelidate/lib/validators";
   export default {
     data() {
       return {

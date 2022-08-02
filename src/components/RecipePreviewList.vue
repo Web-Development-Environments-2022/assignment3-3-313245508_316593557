@@ -1,12 +1,5 @@
 <template>
-  <b-container v-if="isEmpty">
-    <h3>
-      <!-- {{ title }} -->
-      <slot></slot>
-    </h3>
-    <br>
-    <br>
-
+  <div>
     <!-- <div v-if="emptyFlag" >
 
     <b-row v-for="n in NumOfLists">
@@ -33,11 +26,7 @@
       <div v-if="!emptyFlag">
         <b>There are no Recipes to show..</b>
       </div>
-  </b-container>
-
-  <b-container v-else>
-    <h2>There are no recipes to show</h2>
-  </b-container>
+  </div>
 </template>
 
 <script>
@@ -61,13 +50,9 @@ export default {
   data() {
     return {
       recipes: [],
-<<<<<<< HEAD
       emptyFlag: true,
       NumOfLists: 0,
       i: 0,
-=======
-      isEmpty: true,
->>>>>>> b4f386a786884e3347814d8f794fe2aaaef95d86
     };
   },
   mounted() {
@@ -138,7 +123,6 @@ export default {
           response = JSON.parse(JSON.stringify(response.data))
           if(response.length == 0) // there are no private recipes for the specific user
           {
-<<<<<<< HEAD
             this.emptyFlag = false;
             return;
           }
@@ -146,18 +130,6 @@ export default {
           {
             this.recipes = response
             updateNumOfLists(response.length)
-=======
-            this.isEmpty = true
-            // return;
-          }
-          else
-          {
-            console.log("response private")
-            console.log(response)
-            // this.isEmpty = false;
-            this.recipes = response
-            // this.$emit('isEmpty', this.isEmpty)
->>>>>>> b4f386a786884e3347814d8f794fe2aaaef95d86
           }
         } catch (err)
         {
@@ -177,7 +149,6 @@ export default {
           console.log(response)
           if(response.length == 0) // there are no favorite recipes for the specific user
           {
-<<<<<<< HEAD
            this.emptyFlag = false;
            return;
           }
@@ -185,22 +156,10 @@ export default {
           {
             this.recipes = response
             updateNumOfLists(response.length)
-=======
-            this.isEmpty = true
-            // return;
-          }
-          else
-          {
-            // this.isEmpty = false;
-            this.recipes.push(...response);
-            // this.recipes = response
-            this.$emit('isEmpty', this.isEmpty)
->>>>>>> b4f386a786884e3347814d8f794fe2aaaef95d86
           }
         } 
         catch (err)
         {
-<<<<<<< HEAD
           console.log(err.response);
         }
       },
@@ -229,10 +188,6 @@ export default {
         catch (err)
         {
           console.log(err.response);
-=======
-          console.log("got err")
-          console.log(err);
->>>>>>> b4f386a786884e3347814d8f794fe2aaaef95d86
         }
       },
 

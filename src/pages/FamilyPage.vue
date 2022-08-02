@@ -16,26 +16,9 @@
     </div>
 <br><br><br>
       <div class="family_recipes">
-<<<<<<< HEAD
         <RecipePreviewList id="familyRecipeID" class="FamilyRecipes center" />
       </div>
 
-=======
-        <FamilyRecipePreviewList id="familyRecipeID" class="FamilyRecipes center" />
-      </div>
-
-      <!-- <div class="family_recipes">
-        <div class="family_recipes" v-for="r in recipes" :key="r.id">
-            <RecipePreview class="recipePreview" :recipe="r" />
-        </div>
-      </div> -->
-
-        <!-- <b-container v-if="isEmptyFamily()">
-      <h3 class="title">
-        There are no family recipes
-      </h3>
-        </b-container> -->
->>>>>>> b4f386a786884e3347814d8f794fe2aaaef95d86
     </b-container>
 
   </div>

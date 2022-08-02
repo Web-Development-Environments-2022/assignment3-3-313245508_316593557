@@ -26,7 +26,6 @@
 
     <!-- <RecipePreviewList id="privateRecipeID" class="PrivateRecipes center" /> -->
 
-<<<<<<< HEAD
       <div class="private_recipes">
         <RecipePreviewList id="privateRecipeID" class="PrivateRecipes center" />
       </div>
@@ -37,19 +36,6 @@
         </h3>
       </b-container> -->
   </b-container>
-=======
-
-    <div class="private_recipes" >
-      <RecipePreviewList @isEmpty="getisEmpty" id="privateRecipeID" class="PrivateRecipes center" />
-    </div>
-
-    <!-- <div >
-      <h3 class="title">
-        There are no private recipes
-      </h3>
-    </div> -->
-        
->>>>>>> b4f386a786884e3347814d8f794fe2aaaef95d86
   </div>
   
 </template>
