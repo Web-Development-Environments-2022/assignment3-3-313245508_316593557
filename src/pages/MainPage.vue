@@ -9,21 +9,22 @@
       <br><br><br><br><br>
 
     </div>
-  <table align="center">
-
-    <td width="50%" >
+  <table align="center" width="70%">
+    <td width="45%">
       <br>
       <div class="container">
         <br>
         <h3 align="center"><b>Random Recipes</b></h3>
         <br><br><br>
         <RecipePreviewList title="Random Recipes" id="randomRecipeID" class="RandomRecipes center"/>
-
       </div>
+</td>
 
-    </td>
+<td width="1%">
+
+</td>
     
-    <td width="50%">
+    <td width="45%">
       <br>
       <div>
         <br>

@@ -8,11 +8,11 @@
       </div>
 
       <div>
-        <router-link :to="{ name: 'recipe', params: { recipeId: recipe.recipe_id } }" class="recipe-preview">
-          <div class="recipe-body">
-            <img v-if="image_load" :src="recipe.image" class="recipe-image" />
+        <!-- <router-link :to="{ name: 'recipe', params: { recipeId: recipe.recipe_id } }" class="recipe-preview"> -->
+          <div class="recipe-body" align="center">
+            <img v-if="image_load" :src="recipe.image" class="recipe-image" width="350" height="250"/>
           </div>
-        </router-link>
+        <!-- </router-link> -->
       </div>
 
       <br>

@@ -9,11 +9,17 @@
       </div>
 
       <div>
-        <router-link :to="{ name: 'recipe', params: { recipeId: recipe.id } }" class="recipe-preview">
+
+        <router-link v-if="!isPrivate" :to="{ name: 'recipe', params: { recipeId: recipe.id } }" class="recipe-preview">
           <div class="recipe-body">
             <img v-if="image_load" :src="recipe.image" class="recipe-image" />
           </div>
         </router-link>
+
+          <div align="center" v-if="isPrivate" class="recipe-body">
+            <img v-if="image_load" :src="recipe.image" class="recipe-image" width="350" height="250" />
+          </div>
+
       </div>
 
       <br>
@@ -30,15 +36,16 @@
               <li  v-else> watched: no </li>
               <li v-if = recipe.favorite>favorite: yes</li>
               <li  v-else> favorite: no </li>
-              <br><br>
+              <br><br><br><br>
             </b-col>
+            
 
           <!-- check me! -->
-            <b-col v-if = !recipe.favorite>
+            <b-col v-if = "!recipe.favorite && !isPrivate">
               <b-button @click="addToFavorites()" variant="outline-info" >{{this.button_message}}</b-button>
             </b-col>
 
-            <b-col v-else>
+            <b-col v-if = "recipe.favorite">
               <b-button variant="outline-info" disabled>Marked as favorite</b-button>
             </b-col>
             <!-- check me! -->
@@ -53,6 +60,9 @@
 <script>
 export default {
   mounted() {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    console.log(this.isPrivate)
+
     this.axios.get(this.recipe.image, { withCredentials: false}).then((i) => {
       this.image_load = true;
     });
@@ -61,14 +71,18 @@ export default {
   data() {
     return {
       image_load: false,
-      button_message: "Add to favorites"
+      button_message: "Add to favorites",
     };
   },
   props: {
     recipe: {
       type: Object,
       required: true
-    }
+    }, 
+    isPrivate: {
+      type: Boolean,
+      required: true
+    },
   },
     methods:{
       async addToFavorites()

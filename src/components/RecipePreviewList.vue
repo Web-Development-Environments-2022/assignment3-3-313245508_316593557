@@ -5,9 +5,10 @@
 
     <b-row>
       <b-col id="recipeInfo" v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
+        <RecipePreview class="recipePreview" :recipe="r" :isPrivate="p" /> 
       </b-col>
     </b-row>
+
 
     </div>
 
@@ -42,6 +43,7 @@ export default {
       emptyFlag: true,
       NumOfLists: 0,
       i: 0,
+      p: false
     };
   },
   mounted() {
@@ -110,6 +112,7 @@ export default {
           }
           else
           {
+            this.p = true;
             this.recipes = response
             updateNumOfLists(response.length)
           }
@@ -219,6 +222,7 @@ border-width:2px;
 border-style:groove;
 border-color:rgb(62, 89, 115);
 border-radius: 12px;
+margin: 30px;
 }
 
 .container {

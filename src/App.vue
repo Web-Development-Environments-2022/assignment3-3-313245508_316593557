@@ -89,11 +89,7 @@ export default {
 
 <!-- 
 notes:
-- favorite button, "is favorite/is seen" --------------------- working
-- not showing family recipes --------------------------------- working
-- full recipe page - problem in recipe.js (3.2) line 51 ------ working
-- page design and recipes layout ---------------------------- working, need to change layout of full recipe, when click on private recipe somthing not good..
-1. - validations - createRecipe, Search 
+- page design and recipes layout ----------------------------- working, need to change layout of full recipe, when click on private/family recipe..
 2. Real Server..
 3. change yamel
 -->

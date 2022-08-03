@@ -108,7 +108,7 @@ import RecipePreview from "../components/RecipePreview";
         lastSearched: false,
         lastSearchedQuery: "",
         query: '',
-        num_of_result_display: [],
+        num_of_result_display: 5,
         num_of_result: [
           { value: '5', text: '5' },
           { value: '10', text: '10' },
