@@ -1,21 +1,10 @@
 <template>
   <div>
-    <!-- <div v-if="emptyFlag" >
 
-    <b-row v-for="n in NumOfLists">
-      <b-col v-for="r in recipes[0 + i,3 + i]" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
-      </b-col>
-      <div v-if="updateIndex()"></div>
-    </b-row>
-
-    </div> -->
-
-
-    <div v-if="emptyFlag" >
+    <div v-if="emptyFlag">
 
     <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
+      <b-col id="recipeInfo" v-for="r in recipes" :key="r.id">
         <RecipePreview class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
@@ -23,8 +12,8 @@
     </div>
 
 
-      <div v-if="!emptyFlag">
-        <b>There are no Recipes to show..</b>
+      <div v-if="!emptyFlag" align="center">
+        <b>There are no recipes to show..</b>
       </div>
   </div>
 </template>
@@ -62,8 +51,6 @@ export default {
     }
     else if (this.id == "lastWatchedRecipeID")
     {
-      // console.log("hahahaha1")
-      // this.lastWatchedRecipes();
       this.getLastWached();
     }
     else if (this.id == "privateRecipeID")
@@ -85,12 +72,9 @@ export default {
           // "https://test-for-3-2.herokuapp.com/recipes/random"
         );
 
-        // console.log(response);
         const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
-        console.log(this.recipes)
-        // console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }
@@ -103,11 +87,9 @@ export default {
           // "https://test-for-3-2.herokuapp.com/recipes/random"
         );
 
-        // console.log(response);
         const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
-        // console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }
@@ -143,10 +125,7 @@ export default {
           let response = await this.axios.get(
             this.$root.store.server_domain + "/users/favorites",
           );
-
           response = JSON.parse(JSON.stringify(response.data))
-          console.log("response favorite")
-          console.log(response)
           if(response.length == 0) // there are no favorite recipes for the specific user
           {
            this.emptyFlag = false;
@@ -167,6 +146,8 @@ export default {
         async showFamilyRecipes()
       {
         try{
+           console.log("no favorites")
+
           let response = await this.axios.get(
             this.$root.store.server_domain + "/users/family",{
            
@@ -232,7 +213,18 @@ export default {
   align-items: center;
 }
 
+
+#recipeInfo {
+border-width:2px;
+border-style:groove;
+border-color:rgb(62, 89, 115);
+border-radius: 12px;
+}
+
 .container {
   min-height: 400px;
 }
 </style>
+
+
+

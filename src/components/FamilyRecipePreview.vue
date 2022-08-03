@@ -45,6 +45,7 @@ export default {
       this.image_load = true;
     });
     console.log(this.recipe)
+    console.log("ggggggggggggggggggggggggggg")
   },
   data() {
     return {

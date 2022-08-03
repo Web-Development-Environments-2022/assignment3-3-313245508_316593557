@@ -16,7 +16,7 @@
     </div>
 <br><br><br>
       <div class="family_recipes">
-        <RecipePreviewList id="familyRecipeID" class="FamilyRecipes center" />
+        <FamilyRecipePreviewList id="familyRecipeID" class="FamilyRecipes center" />
       </div>
 
     </b-container>

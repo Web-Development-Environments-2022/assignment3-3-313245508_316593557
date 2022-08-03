@@ -1,5 +1,6 @@
 <template>
-  <b-container v-if="isEmpty">
+<div>
+  <b-container v-if="!isEmpty">
     <h3>
       <!-- {{ title }} -->
       <slot></slot>
@@ -7,15 +8,18 @@
     <br>
     <br>
     <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
+      <b-col id="recipeInfo" v-for="r in recipes" :key="r.id">
         <FamilyRecipePreview class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
   </b-container>
 
-  <b-container v-else>
-    <h2>There are no recipes to show</h2>
-  </b-container>
+  <div v-if="isEmpty" align="center">
+    <b-container>
+        <b>There are no recipes to show..</b>
+    </b-container>
+  </div>
+</div>
 </template>
 
 <script>
@@ -52,25 +56,22 @@ export default {
            
             }
           );
-          console.log(response)
           if(response.data.length == 0) // there are no family recipes for the specific user
           {
             this.isEmpty = true
-            // return;
+            return;
           }
           else
           {
-            console.log("response family")
-            
             const searchResults = response.data;
-            // this.recipes = [];
+            console.log(searchResults)
+            this.isEmpty = false;
             this.recipes = searchResults;
           }
           
 
         } catch (err)
         {
-          console.log("got err family")
           console.log(err);
         }
       },
@@ -89,5 +90,12 @@ export default {
 
 .container {
   min-height: 400px;
+}
+
+#recipeInfo {
+border-width:2px;
+border-style:groove;
+border-color:rgb(62, 89, 115);
+border-radius: 12px;
 }
 </style>

@@ -89,9 +89,11 @@ export default {
 
 <!-- 
 notes:
-1. favorite button ---------------------------------------- the server get an undefined id, while in 3.3 its good!
-2. validations
-3. design
-4. Real Server..
-5. change yamel
+- favorite button, "is favorite/is seen" --------------------- working
+- not showing family recipes --------------------------------- working
+- full recipe page - problem in recipe.js (3.2) line 51 ------ working
+- page design and recipes layout ---------------------------- working, need to change layout of full recipe, when click on private recipe somthing not good..
+1. - validations - createRecipe, Search 
+2. Real Server..
+3. change yamel
 -->

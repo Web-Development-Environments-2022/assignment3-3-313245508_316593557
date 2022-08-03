@@ -23,13 +23,14 @@
       <div>
         <b-container>
           <b-row>
-            <b-col>
+            <b-col id="recipeInfo">
               <li>{{ recipe.readyInMinutes }} minutes</li>
               <li>{{ recipe.aggregateLikes }} likes</li>
               <li  v-if = recipe.watched > watched: yes </li>
               <li  v-else> watched: no </li>
               <li v-if = recipe.favorite>favorite: yes</li>
               <li  v-else> favorite: no </li>
+              <br><br>
             </b-col>
 
           <!-- check me! -->
@@ -165,6 +166,7 @@ export default {
   height: 50%;
   overflow: hidden;
 }
+
 
 .recipe-preview .recipe-footer .recipe-title {
   padding: 10px 10px;
