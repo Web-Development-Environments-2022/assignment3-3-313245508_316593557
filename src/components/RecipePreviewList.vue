@@ -222,7 +222,7 @@ border-width:2px;
 border-style:groove;
 border-color:rgb(62, 89, 115);
 border-radius: 12px;
-margin: 30px;
+margin: 10px;
 }
 
 .container {
