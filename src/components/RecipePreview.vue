@@ -60,13 +60,10 @@
 <script>
 export default {
   mounted() {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-    console.log(this.isPrivate)
 
     this.axios.get(this.recipe.image, { withCredentials: false}).then((i) => {
       this.image_load = true;
     });
-    console.log(this.recipe)
   },
   data() {
     return {
