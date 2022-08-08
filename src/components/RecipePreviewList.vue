@@ -2,8 +2,7 @@
   <div>
 
     <div v-if="emptyFlag">
-
-    <b-row>
+    <b-row >
       <b-col id="recipeInfo" v-for="r in recipes" :key="r.id">
         <RecipePreview class="recipePreview" :recipe="r" :isPrivate="p" /> 
       </b-col>
@@ -114,6 +113,7 @@ export default {
           {
             this.p = true;
             this.recipes = response
+            console.log(this.recipes)
             updateNumOfLists(response.length)
           }
         } catch (err)

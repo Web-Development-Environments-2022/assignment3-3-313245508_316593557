@@ -18,6 +18,9 @@
 
           <div align="center" v-if="isPrivate" class="recipe-body">
             <img v-if="image_load" :src="recipe.image" class="recipe-image" width="350" height="250" />
+
+
+
           </div>
 
       </div>
@@ -26,7 +29,7 @@
       <br>
       <br>
 
-      <div>
+      <div v-if="!isPrivate">
         <b-container>
           <b-row>
             <b-col id="recipeInfo">
@@ -53,6 +56,44 @@
           </b-row>
         </b-container>
       </div>
+
+
+    <div v-if="isPrivate">
+            <b-container>
+              <b-row>
+                <b-col id="a">
+                  <li>{{ recipe.readyInMinutes }} minutes</li>
+                  <li>{{ recipe.aggregateLikes }} likes</li>
+                  <li  v-if = recipe.watched > watched: yes </li>
+                  <li  v-else> watched: no </li>
+                  <li v-if = recipe.favorite>favorite: yes</li>
+                  <li  v-else> favorite: no </li>
+                  <br><br><br><br>
+                </b-col>
+
+                <b-col>
+                 <li>instructions: {{ recipe.instructions }} </li>
+                </b-col>
+
+                <b-col>
+                 <li> ingredients: {{ recipe.ingredients }} </li>
+                </b-col>
+                
+
+              <!-- check me! -->
+                <b-col v-if = "!recipe.favorite && !isPrivate">
+                  <b-button @click="addToFavorites()" variant="outline-info" >{{this.button_message}}</b-button>
+                </b-col>
+
+                <b-col v-if = "recipe.favorite">
+                  <b-button variant="outline-info" disabled>Marked as favorite</b-button>
+                </b-col>
+                <!-- check me! -->
+
+              </b-row>
+            </b-container>
+          </div>
+
 
   </div>
 </template>
@@ -93,17 +134,10 @@ export default {
             }
           );
 
-
           if(response.data != "The recipe is already marked as favorite") // the recipe has been added to the user favorite recipes
           {
-            recipe.favorite = true
-            this.button_message = "Marked as favorites amit"
-          }
-          else
-          {
-            recipe.favorite = false;
-            this.button_message = "Marked as favorites amit2"
-
+            this.recipe.favorite = true
+            this.button_message = "Marked as favorites"
           }
         } 
         catch (err)

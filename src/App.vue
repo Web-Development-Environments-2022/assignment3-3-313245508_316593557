@@ -89,7 +89,8 @@ export default {
 
 <!-- 
 notes:
-- page design and recipes layout ----------------------------- working, need to change layout of full recipe, when click on private/family recipe..
-2. Real Server..
-3. change yamel
+- favorite button - after click - change text/change marked ------------------ finished
+- page design and recipes layout - private recipe, full recipe
+1. Real Server..
+2. change yamel
 -->
