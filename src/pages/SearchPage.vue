@@ -76,7 +76,7 @@
     <br>
     <br>
     <div class = "title">
-    <b-button class = "title" variant="outline-primary" @click='Search'> Search </b-button>
+    <b-button variant="outline-primary" @click='Search'> Search </b-button>
     
     </div>
         <br>
