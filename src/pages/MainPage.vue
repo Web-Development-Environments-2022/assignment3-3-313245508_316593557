@@ -3,7 +3,8 @@
 
     <div :style="{
         'background-image': `url(https://static2.bigstockphoto.com/7/9/2/large1500/297327124.jpg)`,}">>
-      <br><br><br><br><br><br><br><br>
+          <br><br><br><br><br>
+
 
       <h1 align="center" class="title"><b>Main Page</b></h1>
       <br><br><br><br><br>

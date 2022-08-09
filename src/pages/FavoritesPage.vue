@@ -2,14 +2,14 @@
 <template class="aaa">
       <div>
     <div :style="{
-        'background-image': `url(https://media.istockphoto.com/photos/healthy-flat-lay-of-sliced-vegetables-composition-picture-id1198220441?k=20&m=1198220441&s=612x612&w=0&h=u9Z7_jok37dMOl41oRovtsIyUk_yWDwH_pADOOwSalg=)`,}">
-    <br><br><br>
+        'background-image': `url(https://static2.bigstockphoto.com/7/9/2/large1500/297327124.jpg)`,}">
+    <br><br><br><br><br>
 
       <h1 class = "title">
         <b>
         Favorite Recipes
         </b>
-        <br><br>
+        <br><br><br>
       </h1>
         <br>
     </div>
@@ -94,6 +94,7 @@ import RecipePreviewList from "../components/RecipePreviewList";
 .title 
 {
   text-align: center;
+  color: rgb(255, 255, 255);
 }
 
 </style>
