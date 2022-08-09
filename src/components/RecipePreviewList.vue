@@ -222,7 +222,12 @@ border-width:2px;
 border-style:groove;
 border-color:rgb(62, 89, 115);
 border-radius: 12px;
-margin: 10px;
+padding: 10px;
+margin-left: 3%;
+margin-right: 3%;
+margin-top: 1%;
+margin-bottom: 3%;
+
 }
 
 .container {

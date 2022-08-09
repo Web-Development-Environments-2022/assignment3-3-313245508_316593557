@@ -32,13 +32,13 @@
       <div v-if="!isPrivate">
         <b-container>
           <b-row>
-            <b-col id="recipeInfo">
-              <li>{{ recipe.readyInMinutes }} minutes</li>
-              <li>{{ recipe.aggregateLikes }} likes</li>
-              <li  v-if = recipe.watched > watched: yes </li>
-              <li  v-else> watched: no </li>
-              <li v-if = recipe.favorite>favorite: yes</li>
-              <li  v-else> favorite: no </li>
+            <b-col>
+              <li> <b>minutes: </b>{{ recipe.readyInMinutes }}</li>
+              <li> <b> likes: </b>{{ recipe.aggregateLikes }} </li>
+              <li  v-if = recipe.watched ><b> watched: </b>yes </li>
+              <li  v-else> <b> watched: </b> no </li>
+              <li v-if = recipe.favorite> <b> favorite: </b> yes</li>
+              <li  v-else> <b> favorite: </b> no </li>
               <br><br><br><br>
             </b-col>
             
@@ -62,21 +62,21 @@
             <b-container>
               <b-row>
                 <b-col id="a">
-                  <li>{{ recipe.readyInMinutes }} minutes</li>
-                  <li>{{ recipe.aggregateLikes }} likes</li>
-                  <li  v-if = recipe.watched > watched: yes </li>
-                  <li  v-else> watched: no </li>
-                  <li v-if = recipe.favorite>favorite: yes</li>
-                  <li  v-else> favorite: no </li>
+                  <li> <b>minutes: </b>{{ recipe.readyInMinutes }} </li>
+                  <li> <b>likes: </b>{{ recipe.aggregateLikes }}</li>
+                  <li  v-if = recipe.watched ><b> watched:</b> yes </li>
+                  <li  v-else> <b> watched: </b> no </li>
+                  <li v-if = recipe.favorite> <b>favorite: </b> yes</li>
+                  <li  v-else> <b> favorite: </b> no </li>
                   <br><br><br><br>
                 </b-col>
 
                 <b-col>
-                 <li>instructions: {{ recipe.instructions }} </li>
+                 <li> <b>instructions: </b> {{ recipe.instructions }} </li>
                 </b-col>
 
                 <b-col>
-                 <li> ingredients: {{ recipe.ingredients }} </li>
+                 <li> <b> ingredients: </b> {{ recipe.ingredients }} </li>
                 </b-col>
                 
 

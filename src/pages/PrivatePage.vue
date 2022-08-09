@@ -2,7 +2,6 @@
 <template>
   <div>
 
-    <b-container>
       <div :style="{
         'background-image': `url(https://media.istockphoto.com/photos/healthy-flat-lay-of-sliced-vegetables-composition-picture-id1198220441?k=20&m=1198220441&s=612x612&w=0&h=u9Z7_jok37dMOl41oRovtsIyUk_yWDwH_pADOOwSalg=)`,}">
         <br>
@@ -17,7 +16,6 @@
           </h1>
           <br>
       </div>
-    </b-container>
 
     <br>
     <br>
@@ -35,7 +33,6 @@
           There are no private recipes
         </h3>
       </b-container> -->
-  </b-container>
   </div>
   
 </template>

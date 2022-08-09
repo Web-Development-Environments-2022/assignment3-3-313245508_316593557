@@ -1,9 +1,20 @@
 
 <template>
   <div>
+    <div :style="{
+        'background-image': `url(https://media.istockphoto.com/photos/healthy-flat-lay-of-sliced-vegetables-composition-picture-id1198220441?k=20&m=1198220441&s=612x612&w=0&h=u9Z7_jok37dMOl41oRovtsIyUk_yWDwH_pADOOwSalg=)`,}">
+        <br>
+        <br>
     <br>
     <h1 class = "title"><b>Search Recipes</b></h1>
     <br>
+    <br>
+
+
+
+    <br>
+
+  </div>
 
     <b-form-input v-if="HavePastSearches()" v-model="query" placeholder="Search recipe"></b-form-input>
     <b-form-input v-else v-model="query" :placeholder="lastSearchedQuery"></b-form-input>
@@ -11,6 +22,8 @@
     
     <br>
       <b-container>
+        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        <br><br>
         <b-row>
           <b-col>
         <p><b>Select number of results:</b></p>
@@ -19,6 +32,7 @@
         <b-form-select v-model="num_of_result_display" :options="num_of_result"></b-form-select>
           </b-col>
         </b-row>
+        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         <br>
         <br>
 
@@ -33,11 +47,10 @@
         <b-row>
                   <div class="mt-3">Choosed cuisines: <strong>{{ cuisine_display }}</strong></div>
         </b-row>
-
+        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         <br>
         <br>
-
 
         <b-row>
           <b-col>
@@ -50,13 +63,9 @@
         <b-row>
         <div class="mt-3">Choosed diet types: <strong>{{ diet_display }}</strong></div>
         </b-row>
-
-
+        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
         <br>
         <br>
-
-
-
         <b-row>
           <b-col>
         <p><b>Select Intolerances: (Hold ctrl to select/deselect multiple options)</b></p>
@@ -68,26 +77,51 @@
         <b-row>
         <div class="mt-3">Choosed intolerances: <strong>{{ intolerance_display }}</strong></div>
         </b-row>
+        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     </b-container>
-
     <br>
     <br>
     <div class = "title">
     <b-button class = "title" variant="outline-primary" @click='Search'> Search </b-button>
+    
     </div>
-  
+        <br>
+        <br>
+
+
+  <div v-if="showResults">
 
   <b-container v-if="isEmpty()">
-      <h3>
-        Search Results:
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  <br><br><br>
+      <h3 align="center">
+        <b>
+        Search Results
+        </b>
       </h3>
 
-      <div class="searched_recipes">
-        <div class="searched_results" v-for="r in recipes" :key="r.id">
-            <RecipePreview class="recipePreview" :recipe="r" />
+      <div >
+        <div v-for="r in recipes" :key="r.id">
+        <br><br>
+            <RecipePreview id="recipeInfo2" class="recipePreview" :recipe="r" />
         </div>
       </div>
   </b-container>
+
+
+  <b-container v-if="!isEmpty()" align="center">
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  <br><br>
+      <h3>
+        <b>
+        There are no search results..
+        </b>
+      </h3>
+      <br>
+  </b-container>
+
+    </div>
+
   </div>
 
   
@@ -106,6 +140,7 @@ import RecipePreview from "../components/RecipePreview";
       return {
         recipes: [],
         lastSearched: false,
+        showResults: false,
         lastSearchedQuery: "",
         query: '',
         num_of_result_display: 5,
@@ -218,8 +253,7 @@ import RecipePreview from "../components/RecipePreview";
         }
         else
         {
-         
-
+          return false
         }
     },
 
@@ -243,6 +277,7 @@ import RecipePreview from "../components/RecipePreview";
           const searchResults = response.data;
           this.recipes = [];
           this.recipes.push(...searchResults);
+          this.showResults = true;
 
 
 
@@ -278,6 +313,17 @@ import RecipePreview from "../components/RecipePreview";
   text-align: center;
   align-items: center;
 }
+
+
+#recipeInfo2 {
+border-width:2px;
+border-style:groove;
+border-color:rgb(62, 89, 115);
+border-radius: 12px;
+margin: 10px;
+padding: 10px;
+}
+
 
 </style>
 

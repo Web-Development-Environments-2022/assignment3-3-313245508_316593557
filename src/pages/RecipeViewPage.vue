@@ -1,18 +1,22 @@
 <template>
   <div class="container">
     <div v-if="recipe">
-      <div class="recipe-header mt-3 mb-4">
-        <h1>{{ recipe.title }}</h1>
+    <br>
+      <div class="recipe-header mt-3 mb-4" align="center">
+        <h1><b>{{ recipe.title }}</b></h1>
+        <br><br>
         <img :src="recipe.image" class="center" />
+        <br>
       </div>
-      <div class="recipe-body">
+      <div id="recipeInfo3" class="recipe-body">
         <div class="wrapper">
           <div class="wrapped">
             <div class="mb-3">
-              <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.aggregateLikes }} likes</div>
+              <div> <b>Ready in: </b> {{ recipe.readyInMinutes }} minutes</div>
+              <br>
+              <div><b>Likes: </b>{{ recipe.aggregateLikes }} likes</div>
             </div>
-            Ingredients:
+            <b>Ingredients:</b>
             <ul>
               <li
                 v-for="(r, index) in recipe.extendedIngredients"
@@ -23,7 +27,7 @@
             </ul>
           </div>
           <div class="wrapped">
-            Instructions:
+            <b>Instructions:</b>
             <ol>
               <li v-for="s in recipe._instructions" :key="s.number">
                 {{ s.step }}
@@ -127,7 +131,14 @@ export default {
   margin-right: auto;
   width: 50%;
 }
-/* .recipe-header{
 
-} */
+#recipeInfo3 {
+border-width:2px;
+border-style:groove;
+border-color:rgb(62, 89, 115);
+border-radius: 12px;
+margin: 10px;
+padding: 10px;
+}
+
 </style>

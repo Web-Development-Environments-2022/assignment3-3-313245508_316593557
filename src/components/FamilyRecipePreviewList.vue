@@ -8,11 +8,13 @@
     <br>
     <br>
     <b-row>
-      <b-col id="recipeInfo" v-for="r in recipes" :key="r.id">
+      <b-col id="recipeInfoFamily" v-for="r in recipes" :key="r.id">
         <FamilyRecipePreview class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
+        <br><br><br><br><br>
   </b-container>
+  
 
   <div v-if="isEmpty" align="center">
     <b-container>
@@ -92,10 +94,12 @@ export default {
   min-height: 400px;
 }
 
-#recipeInfo {
+#recipeInfoFamily {
 border-width:2px;
 border-style:groove;
 border-color:rgb(62, 89, 115);
 border-radius: 12px;
+margin: 10px;
+padding: 10px;
 }
 </style>
