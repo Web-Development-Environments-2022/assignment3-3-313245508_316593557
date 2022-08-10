@@ -5,6 +5,7 @@
       <b-navbar type="dark" variant="dark">
         <b-navbar-nav>
           <b-nav-item to="/">Main page</b-nav-item>
+          <b-nav-item to="/about">About</b-nav-item>
           <b-nav-item to="/search">Search</b-nav-item>
 
         <span v-if="!$root.store.username">
@@ -89,8 +90,6 @@ export default {
 
 <!-- 
 notes:
-- favorite button - after click - change text/change marked ------------------ finished
-- page design and recipes layout - private recipe, full recipe
 1. Real Server..
 2. change yamel
 -->

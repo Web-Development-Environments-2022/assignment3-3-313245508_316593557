@@ -10,6 +10,7 @@
 
 
   </div>
+  <br><br>
 
     <b-form-input v-if="HavePastSearches()" v-model="query" placeholder="Search recipe"></b-form-input>
     <b-form-input v-else v-model="query" :placeholder="lastSearchedQuery"></b-form-input>
